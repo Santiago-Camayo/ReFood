@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="azulbtn">#305F8C</color>
+    <color name="avisos">#717171</color>
+    <color name="azulvinculo">#00BBFF</color>
+    <color name="azuldifuminado">#0D85C9</color>
+    <color name="fondotarjeta">#8C87CEFA</color>
+
+</resources>
