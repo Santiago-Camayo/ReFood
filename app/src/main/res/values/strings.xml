@@ -16,4 +16,10 @@
     <string name="telefono">Numero de Telefono</string>
     <string name="donar">DONAR</string>
     <string name="recibir">BUSCAR DONANTES</string>
+    <string name="title_activity_pulicaciones">Pulicaciones</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="descripcion">Descripción</string>
+    <string name="title_activity_publicaciones">Publicaciones</string>
+
 </resources>
