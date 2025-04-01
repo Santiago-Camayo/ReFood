@@ -16,4 +16,34 @@
     <string name="telefono">Numero de Telefono</string>
     <string name="donar">DONAR</string>
     <string name="recibir">BUSCAR DONANTES</string>
-</resources>
+    <string name="detallesentrega">DETALLES DE ENTREGA</string>
+    <string name="detallesdonacion">Detalles De La Donacion A Realizar</string>
+    <string name="recoger">Recoger en ubicacion</string>
+    <string name="envio">Organizar envio</string>
+    <string name="donador">NOMBRE DEL ESTABLECIMIENTO O PERSONA</string>
+    <string name="contacto">NUMERO DE CONTACTO</string>
+    <string name="descripcion">INGRESA LA DESCRIPCION DEL PRODUCTO</string>
+    <string name="imagenes">AGREGAR IMAGENES</string>
+    <string name="nota">Agregar nota adicional</string>
+    <string name="seleccionar_imagenes">Seleccionar imágenes</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="hint_nota">Escriba una nota adicional</string>
+    <string name="title_activity_ubicacionz">Ubicacionz</string>
+    <string name="verdonacion">Detalles De La Donacion</string>
+
+    <string name="titulo_donacion">DONACION</string>
+    <string name="descripciondonacion">Imagen de fondo para la sección de donación</string>
+
+    <string name="label_nombre_donante">Nombre del donante</string>
+    <string name="label_descripcion_donacion">Descripción de la donación</string>
+    <string name="label_ubicacion">Ubicación</string>
+    <string name="label_contacto">Contacto</string>
+
+    <string name="boton_chatear">Chatear</string>
+    <string name="boton_llamar">Llamar</string>
+
+    <string name="ejemplo_nombre_donante">Juan Pérez</string>
+    <string name="ejemplo_descripcion">5 cajas de alimentos no perecederos</string>
+    <string name="ejemplo_web">www.paginaweb.co</string>
+    <string name="ejemplo_contacto">contacto@event.com</string>
+    </resources>
