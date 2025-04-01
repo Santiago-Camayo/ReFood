@@ -17,14 +17,14 @@
     <string name="donar">DONAR</string>
     <string name="recibir">BUSCAR DONANTES</string>
     <string name="detallesentrega">DETALLES DE ENTREGA</string>
-    <string name="detallesdonacion">Detalles De La Donacion A Realizar</string>
+    <string name="detallesdonacion">Detalles De La Donacion</string>
     <string name="recoger">Recoger en ubicacion</string>
     <string name="envio">Organizar envio</string>
     <string name="donador">NOMBRE DEL ESTABLECIMIENTO O PERSONA</string>
     <string name="contacto">NUMERO DE CONTACTO</string>
     <string name="descripcion">INGRESA LA DESCRIPCION DEL PRODUCTO</string>
     <string name="imagenes">AGREGAR IMAGENES</string>
-    <string name="nota">Agregar nota adicional</string>
+    <string name="nota">AGREGAR NOTA ADICIONAL</string>
     <string name="seleccionar_imagenes">Seleccionar imágenes</string>
     <string name="siguiente">SIGUIENTE</string>
     <string name="hint_nota">Escriba una nota adicional</string>

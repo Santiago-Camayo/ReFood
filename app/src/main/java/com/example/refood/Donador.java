@@ -19,13 +19,7 @@ public class Donador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donador);
         btnsiguiente=findViewById(R.id.btnsiguiente);
-        btnsiguiente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent siguiente = new Intent(Donador.this, Ubicacion.class);
-                startActivity(siguiente);
-            }
-        });
+
 
     }
 }
