@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class IniciarSeccion extends AppCompatActivity {
+public class IniciarSesion extends AppCompatActivity {
 
     ImageButton btnback;
     Button btnsiguiente;
@@ -16,14 +16,14 @@ public class IniciarSeccion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iniciar_seccion);
+        setContentView(R.layout.activity_iniciar_sesion);
 
         btnback = findViewById(R.id.btnatras);
         btnsiguiente = findViewById(R.id.btningresar);
         btnsiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent siguiente = new Intent(IniciarSeccion.this, Menu.class);
+                Intent siguiente = new Intent(IniciarSesion.this, Menu.class);
                 startActivity(siguiente);
 
             }
@@ -32,7 +32,7 @@ public class IniciarSeccion extends AppCompatActivity {
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent back = new Intent(IniciarSeccion.this, MainActivity.class);
+                Intent back = new Intent(IniciarSesion.this, MainActivity.class);
                 startActivity(back);
 
             }
