@@ -25,7 +25,7 @@ import android.widget.ImageButton;
 public class Publicaciones extends AppCompatActivity {
     CardView btnpublicacion1;
     CardView btnpublicacion2;
-    ImageButton btnconfiguracion,btneditperfil;
+    ImageButton btnconfiguracion,btneditperfil,btncasa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +54,15 @@ public class Publicaciones extends AppCompatActivity {
             public void onClick(View v) {
                 Intent profile = new Intent(Publicaciones.this, editar_perfil.class);
                 startActivity(profile);
+            }
+        });
+
+        btncasa = findViewById(R.id.btnhome);
+        btncasa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent casa = new Intent(Publicaciones.this, Menu.class);
+                startActivity(casa);
             }
         });
 
