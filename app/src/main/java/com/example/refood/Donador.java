@@ -21,6 +21,13 @@ public class Donador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donador);
         btnsiguiente = findViewById(R.id.btnsiguiente);
+        btnsiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent siguiente = new Intent(Donador.this, MisDonaciones.class);
+                startActivity(siguiente);
+            }
+        });
 
         btnvolver = findViewById(R.id.btnatras);
         btnvolver.setOnClickListener(new View.OnClickListener() {

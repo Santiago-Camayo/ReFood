@@ -7,10 +7,12 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/fondoazul">
 
+    <!-- Barra de navegación fija en la parte superior -->
     <LinearLayout
         android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:minHeight="56dp"
         android:background="@color/azulbtn"
         android:orientation="horizontal"
         android:padding="8dp"
@@ -18,11 +20,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <ImageButton
             android:id="@+id/btnatras"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -30,176 +31,187 @@
             android:src="@drawable/flechaizquierda" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
             android:text="@string/detallesdonacion"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="0dp"
+    <!-- ScrollView para permitir desplazamiento en pantallas pequeñas -->
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="20dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barradenavegacion">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/detallesentrega"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="25dp"
-            app:cardElevation="4dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/fondotarjeta"
-            android:orientation="vertical">
-            <RadioGroup
-                android:id="@+id/deliveryMethodGroup"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/detallesentrega"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:orientation="vertical">
+                android:backgroundTint="@color/fondotarjeta">
 
-                <RadioButton
-                    android:id="@+id/storePickup"
+                <RadioGroup
+                    android:id="@+id/deliveryMethodGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/recoger"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:padding="12dp"
+                    android:orientation="vertical">
 
-                <RadioButton
-                    android:id="@+id/urgentDelivery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/envio"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    <RadioButton
+                        android:id="@+id/storePickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/recoger"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:text="Entrega en el mismo día"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
-            </RadioGroup>
-        </androidx.cardview.widget.CardView>
+                    <RadioButton
+                        android:id="@+id/urgentDelivery"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/envio"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginBottom="8dp"
-            android:text="@string/donador"
-            android:textColor="@color/white"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="Entrega en el mismo día"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/establishmentName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/donador"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/contacto"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/establishmentName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:minHeight="48dp"
+                android:backgroundTint="@color/white" />
 
-        <EditText
-            android:id="@+id/contactNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/white"
-            android:inputType="phone" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/contacto"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/descripcion"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/contactNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:minHeight="48dp"
+                android:backgroundTint="@color/white"
+                android:inputType="phone" />
 
-        <EditText
-            android:id="@+id/productDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/white" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcion"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/imagenes"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/productDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:minHeight="48dp"
+                android:backgroundTint="@color/white" />
 
-        <Button
-            android:id="@+id/addImagesButton"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/azulbtn"
-            android:textSize="20dp"
-            android:layout_marginBottom="16dp"
-            android:text="@string/imagenes" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/imagenes"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/nota"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            <Button
+                android:id="@+id/addImagesButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:backgroundTint="@color/azulbtn"
+                android:textSize="18sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/imagenes" />
 
-        <EditText
-            android:id="@+id/note"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="24dp"
-            android:paddingHorizontal="10dp"
-            android:background="@color/white"
-            android:gravity="top"
-            android:hint="@string/hint_nota"
-            android:inputType="textMultiLine" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nota"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
-        <Button
-            android:id="@+id/btnsiguiente"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:backgroundTint="@color/azulbtn"
-            android:text="@string/siguiente"
-            android:textAllCaps="false"
-            android:textSize="20dp"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="80dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
+                android:paddingHorizontal="10dp"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="@string/hint_nota"
+                android:inputType="textMultiLine" />
 
-
+            <Button
+                android:id="@+id/btnsiguiente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="56dp"
+                android:backgroundTint="@color/azulbtn"
+                android:text="@string/siguiente"
+                android:layout_marginBottom="16dp"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

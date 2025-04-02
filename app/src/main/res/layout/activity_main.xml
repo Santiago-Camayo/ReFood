@@ -3,66 +3,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:fitsSystemWindows="true"
     android:background="@drawable/fondoazul">
-    <LinearLayout
-        android:id="@+id/contenidoprincipal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <!-- Imagen en la parte superior -->
+
+
+    <!-- Botón de Iniciar Sesión -->
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="244dp"
+        android:src="@drawable/refoodlogo"
         app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical">
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btniniciarsesion"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/azulbtn"
+        android:text="@string/ingresar"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
 
+    <!-- Botón de Registrarse -->
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="350dp"
-            android:fontFamily="@font/playfairdisplayextrabolditalic"/>
-
-        <Button
-            android:id="@+id/btniniciarseccion"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:text="@string/inciarseccion"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:layout_marginTop="200dp"
-            android:textSize="30dp"
-            android:backgroundTint="@color/azulbtn"/>
-
-        <Button
-            android:id="@+id/btnregistrarse"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:text="@string/registrar"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:textSize="30dp"
-            android:backgroundTint="@color/azulbtn"/>
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:src="@drawable/refoodlogo"
-            android:layout_gravity="center"
-            android:layout_marginTop="-650dp"/>
-
-    </LinearLayout>
-
-
-
+    <Button
+        android:id="@+id/btnregistrarse"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/azulbtn"
+        android:text="@string/registrar"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btniniciarsesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

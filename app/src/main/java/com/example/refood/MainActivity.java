@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnlogin = findViewById(R.id.btniniciarseccion);
+        btnlogin = findViewById(R.id.btniniciarsesion);
         btnregister =findViewById(R.id.btnregistrarse);
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
