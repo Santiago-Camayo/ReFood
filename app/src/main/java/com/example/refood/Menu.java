@@ -28,5 +28,14 @@ public class Menu extends AppCompatActivity {
                 startActivity(donar);
             }
         });
+        btnrecibir = findViewById(R.id.botonrecibir);
+        btnrecibir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent recibir = new Intent(Menu.this,Publicaciones.class);
+                startActivity(recibir);
+            }
+        });
+
     }
 }

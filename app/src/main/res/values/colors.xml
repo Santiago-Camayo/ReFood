@@ -7,5 +7,8 @@
     <color name="azulvinculo">#00BBFF</color>
     <color name="azuldifuminado">#0D85C9</color>
     <color name="fondotarjeta">#8C87CEFA</color>
+    <color name="light_blue_600">#FF039BE5</color>
+    <color name="light_blue_A200">#FF40C4FF</color>
+    <color name="black_overlay">#66000000</color>
 
 </resources>

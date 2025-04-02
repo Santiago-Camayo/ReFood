@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ReFood</string>
-    <string name="inciarseccion">Iniciar Seccion</string>
-    <string name="registrar">Registrarce</string>
+    <string name="inciarseccion">Iniciar Sesion</string>
+    <string name="registrar">Registrarse</string>
     <string name="correo">Correo Electronico</string>
     <string name="contraseña">Contraseña</string>
     <string name="ingresar">Ingresar</string>
