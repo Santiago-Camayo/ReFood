@@ -17,14 +17,15 @@ public class Configuraciones extends AppCompatActivity {
 
     ImageButton botonhome,btneditperfil;
 
+    View editarperfil;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuraciones);
 
         switchNotificaciones = findViewById(R.id.switch_notificaciones);
-        btneditperfil = findViewById(R.id.btnperfil);
-        botonhome = findViewById(R.id.homeButton);
+
 
         // Establecer un listener para el Switch
         switchNotificaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -39,8 +40,7 @@ public class Configuraciones extends AppCompatActivity {
                 }
             }
         });
-
-
+        btneditperfil = findViewById(R.id.btnperfil);
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,11 +49,20 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
-        // Manejar el clic para volver al menú
+        botonhome = findViewById(R.id.homeButton);
         botonhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Configuraciones.this, android.R.menu.class); // Reemplaza MainActivity con la clase de tu menú principal
+                Intent intent = new Intent(Configuraciones.this, Menu.class);
+                startActivity(intent);
+            }
+        });
+
+        editarperfil = findViewById(R.id.Texteditarperfil);
+        editarperfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Configuraciones.this, MisDonaciones.class);
                 startActivity(intent);
             }
         });

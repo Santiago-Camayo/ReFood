@@ -48,7 +48,7 @@ ImageButton btncasa,btnconfiguracion,btneditperfil;
         });
 
        btncasa =findViewById(R.id.btnhome);
-        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
+       btncasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent casa = new Intent(EditaPerfil.this, Menu.class);
