@@ -10,25 +10,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <!-- Título principal -->
+
+        <!-- Subtítulo Donación -->
         <TextView
             android:id="@+id/tituloPrincipal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/verdonacion"
             android:background="@drawable/barra_redondasuperior"
+            android:paddingVertical="16dp"
+            android:text="@string/verdonacion"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:paddingVertical="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Subtítulo Donación -->
         <TextView
             android:id="@+id/subtituloDonacion"
             android:layout_width="0dp"

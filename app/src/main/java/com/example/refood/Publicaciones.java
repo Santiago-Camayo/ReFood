@@ -19,13 +19,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.Button;
-
-
+import android.widget.ImageButton;
 
 
 public class Publicaciones extends AppCompatActivity {
     CardView btnpublicacion1;
     CardView btnpublicacion2;
+    ImageButton btnconfiguracion,btneditperfil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,5 +40,24 @@ public class Publicaciones extends AppCompatActivity {
             }
         });
 
-        }
+        btnconfiguracion =findViewById(R.id.btnConfiguraciones);
+        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent confi = new Intent(Publicaciones.this, Configuraciones.class);
+                startActivity(confi);
+            }
+        });
+        btneditperfil =findViewById(R.id.btnperfil);
+        btneditperfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(Publicaciones.this, editar_perfil.class);
+                startActivity(profile);
+            }
+        });
+
+
+    }
 }
+

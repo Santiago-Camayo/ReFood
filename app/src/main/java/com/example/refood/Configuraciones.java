@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Configuraciones extends AppCompatActivity {
 
     private Switch switchNotificaciones;
-    private LinearLayout editProfile;
-    private ImageButton homeButton;
+
+    ImageButton botonhome,btneditperfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +23,8 @@ public class Configuraciones extends AppCompatActivity {
         setContentView(R.layout.activity_configuraciones);
 
         switchNotificaciones = findViewById(R.id.switch_notificaciones);
-        editProfile = findViewById(R.id.editprofile);
-        homeButton = findViewById(R.id.homeButton); // Referencia al botón de la casa
+        btneditperfil = findViewById(R.id.btnperfil);
+        botonhome = findViewById(R.id.homeButton);
 
         // Establecer un listener para el Switch
         switchNotificaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -40,8 +40,8 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
-        // Manejar el clic para editar perfil
-        editProfile.setOnClickListener(new View.OnClickListener() {
+
+        btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Configuraciones.this, editar_perfil.class);
@@ -50,7 +50,7 @@ public class Configuraciones extends AppCompatActivity {
         });
 
         // Manejar el clic para volver al menú
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        botonhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Configuraciones.this, android.R.menu.class); // Reemplaza MainActivity con la clase de tu menú principal
