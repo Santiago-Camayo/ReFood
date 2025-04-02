@@ -12,6 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReFood"
         tools:targetApi="31">
+
+        <activity
+            android:name=".editar_perfil"
+            android:exported="false" />
+        <activity
+            android:name=".Configuraciones"
+            android:exported="false" />
+        <activity android:name=".Donador"
+            android:exported="false"/>
+        <activity android:name=".VerDonacion"
+            android:exported="false"/>
+        <activity android:name=".Publicaciones"
+            android:exported="false"/>
         <activity
             android:name=".Menu"
             android:exported="false" />

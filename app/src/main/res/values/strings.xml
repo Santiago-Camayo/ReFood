@@ -44,9 +44,6 @@
     <string name="ejemplo_descripcion">5 cajas de alimentos no perecederos</string>
     <string name="ejemplo_web">www.paginaweb.co</string>
     <string name="ejemplo_contacto">contacto@event.com</string>
-    <string name="telefono">Numero de Telefono</string>
-    <string name="donar">DONAR</string>
-    <string name="recibir">BUSCAR DONANTES</string>
     <string name="configuraciones">Configuraciones</string>
     <string name="seguridad">Seguridad</string>
     <string name="Editar_Perfil">Editar Perfil</string>
