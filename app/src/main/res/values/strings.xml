@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ReFood</string>
-    <string name="inciarseccion">Iniciar Seccion</string>
-    <string name="registrar">Registrarce</string>
+    <string name="inciarseccion">Iniciar Sesion</string>
+    <string name="registrar">Registrarse</string>
     <string name="correo">Correo Electronico</string>
     <string name="contraseña">Contraseña</string>
     <string name="ingresar">Ingresar</string>
@@ -19,7 +19,7 @@
     <string name="publicaciones">PUBLICACIONES</string>
     <string name="detallespubli">Detalles publicacion</string>
     <string name="detallesentrega">DETALLES DE ENTREGA</string>
-    <string name="detallesdonacion">Detalles De La Donacion A Realizar</string>
+    <string name="detallesdonacion">Detalles De La Donacion </string>
     <string name="recoger">Recoger en ubicacion</string>
     <string name="envio">Organizar envio</string>
     <string name="donador">NOMBRE DEL ESTABLECIMIENTO O PERSONA</string>
