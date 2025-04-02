@@ -13,12 +13,11 @@
         android:theme="@style/Theme.ReFood"
         tools:targetApi="31">
         <activity
-        android:name=".Publicaciones"
-        android:configChanges="orientation|keyboardHidden|screenSize"
-        android:exported="false"
-        android:label="@string/publicaciones"
-        android:theme="@style/Theme.ReFood.Fullscreen" />
+            android:name=".Publicaciones"
+            android:exported="false" />
         <activity android:name=".Donador"
+            android:exported="false"/>
+        <activity android:name=".VerDonacion"
             android:exported="false"/>
         <activity
             android:name=".Menu"
@@ -26,8 +25,6 @@
         <activity
             android:name=".Registro"
             android:exported="false" />
-        <activity android:name=".VerDonacion"
-            android:exported="false"/>
         <activity
             android:name=".IniciarSesion"
             android:exported="false" />

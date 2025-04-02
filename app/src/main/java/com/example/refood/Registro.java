@@ -32,18 +32,6 @@ public class Registro extends AppCompatActivity {
             }
         });
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent save = new Intent(Registro.this,IniciarSesion.class);
-                startActivity(save);
-
-            }
-        });
-
-
-
-
 
 
     }

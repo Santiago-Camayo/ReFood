@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".IniciarSesion">
+    tools:context=".IniciarSeccion">
 
     <!-- barra de navegacion-->
     <LinearLayout
@@ -112,11 +112,11 @@
         <TextView
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:gravity="center_horizontal"
             android:text="@string/advertencialogin"
+            android:gravity="center_horizontal"
             android:textColor="@color/avisos"
-            android:textSize="16dp" />
+            android:textSize="16dp"
+            android:layout_marginTop="80dp"/>
 
 
     </LinearLayout>
