@@ -32,8 +32,7 @@ public class editar_perfil extends Configuraciones {
             String contactNumber = editTextContactNumber.getText().toString();
             String address = editTextAddress.getText().toString();
 
-            // Aquí puedes agregar la lógica para guardar los datos editados.
-            // Por ejemplo, puedes guardarlos en una base de datos o enviarlos a un servidor.
+
 
             Toast.makeText(editar_perfil.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
         });

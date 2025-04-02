@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,8 +24,8 @@ import android.widget.Button;
 
 
 public class Publicaciones extends AppCompatActivity {
-    Button btnpublicacion1;
-    Button btnpublicacion2;
+    CardView btnpublicacion1;
+    CardView btnpublicacion2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
