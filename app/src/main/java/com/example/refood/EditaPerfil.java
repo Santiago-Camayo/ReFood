@@ -1,14 +1,16 @@
 package com.example.refood;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class EditaPerfil extends Configuraciones {
 
-public class editar_perfil extends Configuraciones {
-
+ImageButton btncasa,btnconfiguracion,btneditperfil;
     private EditText editTextName;
     private EditText editTextEmail;
     private EditText editTextContactNumber;
@@ -18,7 +20,7 @@ public class editar_perfil extends Configuraciones {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_perfil);
+        setContentView(R.layout.activity_editarperfil);
 
         editTextAddress = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
@@ -34,7 +36,25 @@ public class editar_perfil extends Configuraciones {
 
 
 
-            Toast.makeText(editar_perfil.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditaPerfil.this, "Perfil actualizado", Toast.LENGTH_SHORT).show();
         });
+        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
+        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent configuraciones = new Intent(EditaPerfil.this, Configuraciones.class);
+                startActivity(configuraciones);
+            }
+        });
+
+       btncasa =findViewById(R.id.imgcasa);
+        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent casa = new Intent(EditaPerfil.this, Menu.class);
+                startActivity(casa);
+            }
+        });
+
     }
 }

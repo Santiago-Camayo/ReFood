@@ -5,7 +5,6 @@ import android.annotation.SuppressLint;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -23,8 +22,8 @@ import android.widget.ImageButton;
 
 
 public class Publicaciones extends AppCompatActivity {
-    CardView btnpublicacion1;
-    CardView btnpublicacion2;
+    Button btnpublicacion1;
+    Button btnpublicacion2;
     ImageButton btnconfiguracion,btneditperfil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class Publicaciones extends AppCompatActivity {
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(Publicaciones.this, editar_perfil.class);
+                Intent profile = new Intent(Publicaciones.this, EditaPerfil.class);
                 startActivity(profile);
             }
         });

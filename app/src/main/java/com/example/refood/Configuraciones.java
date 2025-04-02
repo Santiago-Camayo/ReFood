@@ -44,7 +44,7 @@ public class Configuraciones extends AppCompatActivity {
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Configuraciones.this, editar_perfil.class);
+                Intent intent = new Intent(Configuraciones.this, EditaPerfil.class);
                 startActivity(intent);
             }
         });

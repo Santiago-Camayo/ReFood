@@ -39,7 +39,7 @@
             android:gravity="center"
             android:text="@string/detallesdonacion"
             android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
 
