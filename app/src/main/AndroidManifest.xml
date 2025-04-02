@@ -19,7 +19,7 @@
             android:name=".Registro"
             android:exported="false" />
         <activity
-            android:name=".IniciarSeccion"
+            android:name=".IniciarSesion"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
