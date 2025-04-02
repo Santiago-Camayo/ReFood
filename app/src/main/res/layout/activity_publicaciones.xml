@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_activity_publicaciones"
+            android:text="@string/publicaciones"
             android:gravity="center"
             android:textSize="40dp"
             android:textColor="@color/white"
@@ -51,6 +51,7 @@
 
         <!-- Primera tarjeta: DONAR -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/publicacion1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -68,21 +69,21 @@
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="70dp"/>
 
-            <Button
-                android:id="@+id/btnPublicacion1"
-                android:layout_width="350dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:layout_marginTop="310dp"
                 android:backgroundTint="@color/white"
-                android:text="@string/title_activity_publicaciones"
-                android:textColor="@color/black"
-                android:textSize="40dp"
+                android:text="@string/detallespubli"
+                android:textColor="@color/avisos"
+                android:textSize="25dp"
                 android:fontFamily="sans-serif-black"/>
         </androidx.cardview.widget.CardView>
 
         <!-- Segunda tarjeta: RECIBIR -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/publicacion2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -100,16 +101,15 @@
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="70dp"/>
 
-            <Button
-                android:id="@+id/btnPublicacion2"
-                android:layout_width="350dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="10dp"
+                android:background="@color/white"
+                android:layout_marginTop="310dp"
                 android:backgroundTint="@color/white"
-                android:text="@string/title_activity_publicaciones"
-                android:textColor="@color/black"
-                android:textSize="40dp"
+                android:text="@string/detallespubli"
+                android:textColor="@color/avisos"
+                android:textSize="25dp"
                 android:fontFamily="sans-serif-black"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

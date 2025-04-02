@@ -19,22 +19,22 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.widget.Button;
 
-import com.example.refood.databinding.ActivityPublicacionesBinding;
+
 
 
 public class Publicaciones extends AppCompatActivity {
     Button btnpublicacion1;
-    Button getBtnpublicacion2;
+    Button btnpublicacion2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
 
-        btnpublicacion1 = findViewById(R.id.btnPublicacion1);
+        btnpublicacion1 = findViewById(R.id.publicacion1);
         btnpublicacion1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent publicacion1= new Intent(Publicacionesthis,VerDetalles.class);
+                Intent publicacion1= new Intent(Publicaciones.this, VerDonacion.class);
                 startActivity(publicacion1);
             }
         });

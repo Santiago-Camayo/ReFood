@@ -14,10 +14,11 @@
         tools:targetApi="31">
         <activity
             android:name=".Publicaciones"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:label="@string/title_activity_publicaciones"
-            android:theme="@style/Theme.ReFood.Fullscreen" />
+            android:exported="false" />
+        <activity android:name=".Donador"
+            android:exported="false"/>
+        <activity android:name=".VerDonacion"
+            android:exported="false"/>
         <activity
             android:name=".Menu"
             android:exported="false" />
@@ -25,7 +26,7 @@
             android:name=".Registro"
             android:exported="false" />
         <activity
-            android:name=".IniciarSeccion"
+            android:name=".IniciarSesion"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
