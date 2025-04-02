@@ -52,7 +52,7 @@ public class Publicaciones extends AppCompatActivity {
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(Publicaciones.this, EditaPerfil.class);
+                Intent profile = new Intent(Publicaciones.this, MisDonaciones.class);
                 startActivity(profile);
             }
         });

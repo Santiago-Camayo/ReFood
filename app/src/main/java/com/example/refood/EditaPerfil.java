@@ -17,6 +17,8 @@ ImageButton btncasa,btnconfiguracion,btneditperfil;
     private EditText editTextAddress;
     private Button buttonSave;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,7 @@ ImageButton btncasa,btnconfiguracion,btneditperfil;
         });
 
        btncasa =findViewById(R.id.btnhome);
-        btnconfiguracion.setOnClickListener(new View.OnClickListener() {
+        btncasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent casa = new Intent(EditaPerfil.this, Menu.class);

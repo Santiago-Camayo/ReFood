@@ -51,7 +51,7 @@ public class Menu extends AppCompatActivity {
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profile = new Intent(Menu.this, EditaPerfil.class);
+                Intent profile = new Intent(Menu.this, MisDonaciones.class);
                 startActivity(profile);
             }
         });
