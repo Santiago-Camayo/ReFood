@@ -13,20 +13,13 @@
         android:theme="@style/Theme.ReFood"
         tools:targetApi="31">
         <activity
-            android:name=".Publicaciones"
-            android:exported="false" />
-        <activity android:name=".Donador"
-            android:exported="false"/>
-        <activity android:name=".VerDonacion"
-            android:exported="false"/>
-        <activity
             android:name=".Menu"
             android:exported="false" />
         <activity
             android:name=".Registro"
             android:exported="false" />
         <activity
-            android:name=".IniciarSesion"
+            android:name=".IniciarSeccion"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
