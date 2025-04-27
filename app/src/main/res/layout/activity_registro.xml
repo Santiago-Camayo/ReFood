@@ -110,6 +110,7 @@
 
 
             <EditText
+                android:id="@+id/etnombre"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -119,6 +120,7 @@
                 android:layout_weight="1"
                 android:inputType="text" />
             <EditText
+                android:id="@+id/etapellido"
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -130,6 +132,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/etcorreo"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -138,6 +141,7 @@
                 android:paddingHorizontal="30dp"
                 android:inputType="textEmailAddress" />
             <EditText
+                android:id="@+id/etcontrasena"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -146,6 +150,7 @@
                 android:paddingHorizontal="30dp"
                 android:inputType="textPassword" />
             <EditText
+                android:id="@+id/ettelefono"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -154,6 +159,7 @@
                 android:paddingHorizontal="30dp"
                 android:inputType="phone" />
             <EditText
+                android:id="@+id/etfecha"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
@@ -162,6 +168,7 @@
                 android:paddingHorizontal="30dp"
                 android:inputType="text" />
             <EditText
+                android:id="@+id/etgenero"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:background="@drawable/rectangulo"
