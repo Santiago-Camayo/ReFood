@@ -5,27 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
-    <!-- Imagen en la parte superior -->
+    <!-- Imagen de fondo -->
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/gradient_background"
+        android:scaleType="centerCrop"
+        android:scaleX="3.0"
+        android:scaleY="3.0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
 
-
-    <!-- Botón de Iniciar Sesión -->
-
+    <!-- Logo -->
     <ImageView
         android:id="@+id/logo"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:layout_marginTop="232dp"
-        android:foregroundGravity="center_vertical"
         android:src="@drawable/refoodlogo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"/>
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="invisible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
