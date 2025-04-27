@@ -18,12 +18,14 @@
         android:id="@+id/logo"
         android:layout_width="300dp"
         android:layout_height="400dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="232dp"
+        android:foregroundGravity="center_vertical"
         android:src="@drawable/refoodlogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="centerCrop"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
