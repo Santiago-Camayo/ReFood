@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/fondoazul">
 
-
     <LinearLayout
         android:id="@+id/barradenavegacion"
         android:layout_width="match_parent"
@@ -17,7 +16,7 @@
         android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/editarperfil"
+        app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/barra_redondasuperior"
         android:orientation="horizontal">
 
@@ -30,10 +29,7 @@
             android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold">
-
         </TextView>
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -41,70 +37,90 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:paddingHorizontal="25dp"
         android:layout_marginTop="100dp"
-        android:background="@drawable/barra_redondasuperior"
         app:layout_constraintTop_toTopOf="@id/barradenavegacion"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/barranavegacioninferior">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/barranavegacioninferior">
 
-        <EditText
-            android:id="@+id/editTextName"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/perfilconfg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:padding="12dp"
-            android:minHeight="48dp"
-            android:autofillHints="name"
-            android:background="@drawable/editar_texto_fondo"
-            android:layout_marginBottom="16dp"/>
+            app:cardCornerRadius="25dp"
+            app:cardElevation="4dp"
+            android:backgroundTint="@color/fondotarjeta">
 
-        <EditText
-            android:id="@+id/editTextEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:padding="12dp"
-            android:minHeight="48dp"
-            android:autofillHints="emailAddress"
-            android:background="@drawable/editar_texto_fondo"
-            android:layout_marginBottom="16dp"/>
+            <!-- Usar un LinearLayout vertical dentro del CardView para organizar los elementos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-        <EditText
-            android:id="@+id/editTextContactNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/contact_number"
-            android:inputType="phone"
-            android:padding="12dp"
-            android:minHeight="48dp"
-            android:autofillHints="phone"
-            android:background="@drawable/editar_texto_fondo"
-            android:layout_marginBottom="16dp"/>
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:textColorHint="@color/avisos"
+                    android:inputType="textPersonName"
+                    android:padding="12dp"
+                    android:minHeight="48dp"
+                    android:background="@drawable/editar_texto_fondo"
+                    android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/editTextAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address"
-            android:inputType="textPostalAddress"
-            android:padding="12dp"
-            android:minHeight="48dp"
-            android:autofillHints="postalAddress"
-            android:background="@drawable/editar_texto_fondo"
-            android:layout_marginBottom="16dp"/>
+                <EditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:textColorHint="@color/avisos"
+                    android:inputType="textEmailAddress"
+                    android:padding="12dp"
+                    android:minHeight="48dp"
+                    android:autofillHints="emailAddress"
+                    android:background="@drawable/editar_texto_fondo"
+                    android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/save"
-            android:textSize="30dp"
-            android:backgroundTint="@color/azulbtn"
-            android:textColor="@color/white"
-            android:padding="12dp"/>
+                <EditText
+                    android:id="@+id/editTextContactNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/contact_number"
+                    android:textColorHint="@color/avisos"
+                    android:inputType="phone"
+                    android:padding="12dp"
+                    android:minHeight="48dp"
+                    android:autofillHints="phone"
+                    android:background="@drawable/editar_texto_fondo"
+                    android:layout_marginBottom="16dp" />
+
+                <EditText
+                    android:id="@+id/editTextAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address"
+                    android:textColorHint="@color/avisos"
+                    android:inputType="textPostalAddress"
+                    android:padding="12dp"
+                    android:minHeight="48dp"
+                    android:autofillHints="postalAddress"
+                    android:background="@drawable/editar_texto_fondo"
+                    android:layout_marginBottom="16dp" />
+
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save"
+                    android:textSize="30dp"
+                    android:backgroundTint="@color/azulbtn"
+                    android:textColor="@color/white"
+                    android:padding="12dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
     <LinearLayout
@@ -125,7 +141,7 @@
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="48dp"
@@ -135,7 +151,7 @@
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="48dp"
@@ -145,7 +161,7 @@
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/btnConfiguraciones"
@@ -156,10 +172,6 @@
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_weight="1"/>
-
-
-
+            android:layout_weight="1" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

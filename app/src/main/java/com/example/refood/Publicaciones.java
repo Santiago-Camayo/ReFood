@@ -9,6 +9,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Build;
@@ -21,24 +24,33 @@ import android.view.WindowInsets;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.List;
+
 
 public class Publicaciones extends AppCompatActivity {
-    CardView btnpublicacion1;
-    CardView btnpublicacion2;
+
     ImageButton btnconfiguracion,btneditperfil,btncasa;
+    private RecyclerView recyclerView;     // RecyclerView para mostrar las donaciones
+    private DonacionAdapter adapter;       // Adaptador para el RecyclerView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publicaciones);
 
-        btnpublicacion1 = findViewById(R.id.publicacion1);
-        btnpublicacion1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent publicacion1= new Intent(Publicaciones.this, VerDonacion.class);
-                startActivity(publicacion1);
-            }
-        });
+        // Inicializar el RecyclerView
+        recyclerView = findViewById(R.id.listaalimentos);
+
+        // Configurar el LayoutManager (cómo se muestran los elementos)
+        // GridLayoutManager con 2 columnas crea una cuadrícula de 2 columnas
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        // Crear y configurar el adaptador con la lista de donaciones
+        adapter = new DonacionAdapter(this, DonacionesData.ListaDonaciones);
+        recyclerView.setAdapter(adapter);
+
+
+
+
 
         btnconfiguracion =findViewById(R.id.btnConfiguraciones);
         btnconfiguracion.setOnClickListener(new View.OnClickListener() {

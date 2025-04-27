@@ -46,8 +46,7 @@
         app:layout_constraintBottom_toTopOf="@id/barranavegacioninferior"
         android:orientation="vertical"
         android:paddingHorizontal="30dp"
-        android:paddingVertical="30dp"
-        android:background="@drawable/fondoazul">
+        android:paddingVertical="30dp">
 
         <!-- Primera tarjeta: DONAR -->
         <androidx.cardview.widget.CardView
