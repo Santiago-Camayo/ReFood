@@ -20,17 +20,17 @@
     <string name="detallespubli">Detalles publicacion</string>
     <string name="detallesentrega">DETALLES DE ENTREGA</string>
     <string name="detallesdonacion">Detalles De La Donacion </string>
-    <string name="recoger">Recoger en ubicacion</string>
+    <string name="recoger">Recoger</string>
     <string name="envio">Organizar envio</string>
     <string name="donador">NOMBRE DEL ESTABLECIMIENTO O PERSONA</string>
     <string name="contacto">NUMERO DE CONTACTO</string>
     <string name="descripcion">INGRESA LA DESCRIPCION DEL PRODUCTO</string>
     <string name="imagenes">AGREGAR IMAGENES</string>
-    <string name="nota">Agregar nota adicional</string>
+    <string name="nota">AGREGAR NOTA ADICIONAL</string>
     <string name="seleccionar_imagenes">Seleccionar imágenes</string>
     <string name="siguiente">SIGUIENTE</string>
     <string name="hint_nota">Escriba una nota adicional</string>
-    <string name="title_activity_ubicacionz">Ubicacionz</string>
+    <string name="title_activity_ubicacionz">Ubicacion</string>
     <string name="verdonacion">Detalles De La Donacion</string>
     <string name="titulo_donacion">DONACION</string>
     <string name="descripciondonacion">Imagen de fondo para la sección de donación</string>
@@ -41,7 +41,7 @@
     <string name="boton_chatear">Chatear</string>
     <string name="boton_llamar">Llamar</string>
     <string name="ejemplo_nombre_donante">Juan Pérez</string>
-    <string name="ejemplo_descripcion">5 cajas de alimentos no perecederos</string>
+    <string name="ejemplo_descripcion">alimentos no perecederos</string>
     <string name="ejemplo_web">www.paginaweb.co</string>
     <string name="ejemplo_contacto">contacto@event.com</string>
     <string name="configuraciones">Configuraciones</string>
@@ -56,4 +56,14 @@
     <string name="address">Dirección</string>
     <string name="save">Guardar</string>
     <string name="misdonaciones">MIS DONACIONES</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="login_button_text">Iniciar Sesión</string>
+    <string name="register_button_text">¿No tienes cuenta? Regístrate</string>
+    <string name="forgot_password_text">¿Olvidaste tu contraseña?</string>
+    <string name="error_field_required">Este campo es obligatorio</string>
+    <string name="error_invalid_email">El correo electrónico no es válido</string>
+    <string name="fecha_publicacion">13/03/2025</string>
+    <string name="hora_publicacion">12:00</string>"
 </resources>

@@ -71,7 +71,7 @@
     <!-- Separador -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="2dp"
         android:background="#E0E0E0"
         app:layout_constraintTop_toBottomOf="@id/editprofile"/>
 
@@ -115,8 +115,8 @@
     <!-- Separador -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E0E0E0"
+        android:layout_height="2dp"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/bntnotis"/>
 
     <!-- Seguridad -->
@@ -191,6 +191,11 @@
             android:layout_height="50dp"
             android:src="@drawable/flecha_icono"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#E0E0E0"
+        app:layout_constraintTop_toBottomOf="@id/btnidioma"/>
 
     <!-- Barra de navegación inferior -->
     <LinearLayout

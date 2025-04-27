@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity"
-    android:background="@drawable/fondoazul">
+    >
 
     <!-- Imagen en la parte superior -->
 
@@ -15,41 +16,14 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="244dp"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="304dp"
         android:src="@drawable/refoodlogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btniniciarsesion"
-        android:layout_width="320dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="136dp"
-        android:backgroundTint="@color/azulbtn"
-        android:text="@string/ingresar"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
-
-    <!-- Botón de Registrarse -->
-
-    <Button
-        android:id="@+id/btnregistrarse"
-        android:layout_width="320dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="44dp"
-        android:backgroundTint="@color/azulbtn"
-        android:text="@string/registrar"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btniniciarsesion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

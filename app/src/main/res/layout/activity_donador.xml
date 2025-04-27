@@ -84,15 +84,20 @@
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/storePickup"
+                        android:id="@+id/recojerenubi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/recoger"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:background="@color/white"/>
+
                     <RadioButton
-                        android:id="@+id/urgentDelivery"
+                        android:id="@+id/hacerenvio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/envio"
@@ -199,6 +204,7 @@
                 android:background="@color/white"
                 android:gravity="top"
                 android:hint="@string/hint_nota"
+                android:textColorHint="@color/avisos"
                 android:inputType="textMultiLine" />
 
             <Button
