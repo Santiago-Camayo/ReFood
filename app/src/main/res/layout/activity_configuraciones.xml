@@ -197,6 +197,43 @@
         android:background="#E0E0E0"
         app:layout_constraintTop_toBottomOf="@id/btnidioma"/>
 
+    <LinearLayout
+        android:id="@+id/btnelminarperfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btnidioma">
+
+        <ImageView
+            android:contentDescription="@string/configuraciones"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/borrar_usuario"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/elminarperfil"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:contentDescription="@string/configuraciones"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/flecha_icono"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#E0E0E0"
+        app:layout_constraintTop_toBottomOf="@id/btnelminarperfil"/>
+
     <!-- Barra de navegación inferior -->
     <LinearLayout
         android:id="@+id/barranavegacioninferior"

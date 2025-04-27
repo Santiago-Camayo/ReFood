@@ -5,7 +5,7 @@ import java.util.List;
 
 
 //Clase para almacenar temporalmente las donaciones
- //reemplazado por una base de datos
+ //reemplazar por una base de datos
 
 public class DonacionesData {
 
