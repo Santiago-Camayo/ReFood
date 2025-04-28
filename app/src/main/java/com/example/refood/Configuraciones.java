@@ -1,5 +1,7 @@
 package com.example.refood;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,10 +15,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 public class Configuraciones extends AppCompatActivity {
 
     private Switch switchNotificaciones;
+    private SwitchMaterial swDarkMode;
 
     ImageButton botonhome,btneditperfil;
 
@@ -29,6 +35,19 @@ public class Configuraciones extends AppCompatActivity {
         setContentView(R.layout.activity_configuraciones);
 
         switchNotificaciones = findViewById(R.id.switch_notificaciones);
+        swDarkMode=findViewById(R.id.swmodooscuro);
+
+        swDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Toast.makeText(Configuraciones.this, "CONFIGIGURACION PROXIMAMENTE", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        
+        
 
 
         // Establecer un listener para el Switch
@@ -80,6 +99,11 @@ public class Configuraciones extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
     private void Dialogoconfirmacion() {
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar cuenta") // Título del diálogo
