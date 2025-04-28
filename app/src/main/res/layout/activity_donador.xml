@@ -26,7 +26,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical"
             android:adjustViewBounds="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@color/azulbtn"
             android:scaleType="fitCenter"
             android:src="@drawable/flechaizquierda" />
 
@@ -57,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:background="@color/white">
 
             <TextView
                 android:layout_width="match_parent"
@@ -74,7 +75,7 @@
                 app:cardElevation="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/fondotarjeta">
+                android:backgroundTint="@color/azulbtn">
 
                 <RadioGroup
                     android:id="@+id/deliveryMethodGroup"
@@ -93,7 +94,7 @@
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="4dp"
+                        android:layout_height="2dp"
                         android:background="@color/white"/>
 
                     <RadioButton
@@ -118,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/donador"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -129,13 +130,13 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
                 android:minHeight="48dp"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/contacto"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -146,14 +147,14 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
                 android:minHeight="48dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/black"
                 android:inputType="phone" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/descripcion"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -164,13 +165,13 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="16dp"
                 android:minHeight="48dp"
-                android:backgroundTint="@color/white" />
+                android:backgroundTint="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/imagenes"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -189,7 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nota"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 

@@ -7,7 +7,7 @@
     tools:context=".EditaPerfil"
     android:padding="0dp"
     android:fitsSystemWindows="true"
-    android:background="@drawable/fondoazul">
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/barradenavegacion"
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="25dp"
             app:cardElevation="4dp"
-            android:backgroundTint="@color/fondotarjeta">
+            android:backgroundTint="@color/light_blue_600">
 
             <!-- Usar un LinearLayout vertical dentro del CardView para organizar los elementos -->
             <LinearLayout

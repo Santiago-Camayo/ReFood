@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".Registro"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <!-- barra de navegacion-->
     <LinearLayout
@@ -63,7 +64,7 @@
         android:id="@+id/contenidoprincipal"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/fondoazul"
+        android:background="@drawable/rectangulo_background"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/barradenavegacion"
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/aggftperfil"
             android:layout_gravity="center"
-            android:textColor="@color/azulvinculo"
+            android:textColor="@color/white"
             android:textSize="20dp"/>
 
         <LinearLayout
