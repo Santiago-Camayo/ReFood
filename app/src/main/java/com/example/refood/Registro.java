@@ -4,16 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -33,7 +34,8 @@ public class Registro extends AppCompatActivity {
     TextView btnsave;
     EditText etNombre, etApellido, etCorreo, etContrasena, etTelefono, etFecha, etGenero;
     RequestQueue requestQueue;
-    private static final String URL1 = "http://192.168.10.18/android/save.php";
+    private static final String URL1 = "http://Refood.42web.io/android/save.php"; // Cambiado a HTTPS
+    private static final String TAG = "Registro"; // Tag para logs
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +52,7 @@ public class Registro extends AppCompatActivity {
         setupSaveButton();
 
         // Configuración del botón de atrás
-        btnback.setOnClickListener(v -> {
-            onBackPressed();
-        });
+        btnback.setOnClickListener(v -> onBackPressed());
     }
 
     private void initViews() {
@@ -119,6 +119,11 @@ public class Registro extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
 
+        // Agregar logs para depuración
+        Log.d(TAG, "Enviando solicitud a: " + URL1);
+        Log.d(TAG, "Datos: nombre=" + nombre + ", apellido=" + apellido +
+                ", correo=" + correo + ", telefono=" + telefono);
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 URL1,
@@ -128,6 +133,9 @@ public class Registro extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/x-www-form-urlencoded");
+                headers.put("User-Agent", "RefoodApp/1.0 Android");
+                // Agregar cabeceras CORS
+                headers.put("Accept", "application/json");
                 return headers;
             }
 
@@ -138,13 +146,25 @@ public class Registro extends AppCompatActivity {
                 params.put("apellido", apellido);
                 params.put("correo", correo);
                 params.put("contrasena", contrasena);
-                params.put("telefono", telefono); // Mantenemos como String
+                params.put("telefono", telefono);
                 params.put("fecha", fecha);
                 params.put("genero", genero);
+                // Opcional: parámetros que pueden ser útiles aunque no se usen
+                params.put("tipodonacion", "");
+                params.put("cantidad", "0");
+                params.put("descripcion", "");
                 return params;
             }
         };
 
+        // Configurar una política de reintento más tolerante
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                15000,  // 15 segundos de timeout
+                2,      // 2 reintentos máximos
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+
+        // Añadir la solicitud a la cola
         requestQueue.add(stringRequest);
     }
 
@@ -152,12 +172,12 @@ public class Registro extends AppCompatActivity {
         progressDialog.dismiss();
 
         // Registrar la respuesta bruta para depuración
-        Log.d("Registro", "Respuesta del servidor: " + response);
+        Log.d(TAG, "Respuesta del servidor: " + response);
 
         // Verificar si la respuesta parece ser HTML en lugar de JSON
         if (response.contains("<") && response.contains(">")) {
             showToast("Error: El servidor ha devuelto una respuesta HTML en lugar de JSON");
-            Log.e("Registro", "El servidor devolvió HTML en lugar de JSON: " + response);
+            Log.e(TAG, "El servidor devolvió HTML en lugar de JSON: " + response);
             return;
         }
 
@@ -171,7 +191,7 @@ public class Registro extends AppCompatActivity {
                 showToast("Error: " + jsonResponse.getString("message"));
             }
         } catch (JSONException e) {
-            Log.e("Registro", "Error al analizar JSON", e);
+            Log.e(TAG, "Error al analizar JSON", e);
             showToast("Error en formato de respuesta del servidor");
         }
     }
@@ -179,16 +199,30 @@ public class Registro extends AppCompatActivity {
     private void handleError(VolleyError error, ProgressDialog progressDialog) {
         progressDialog.dismiss();
         String errorMsg = "Error de conexión";
+
         if (error.networkResponse != null) {
             errorMsg += " (Código: " + error.networkResponse.statusCode + ")";
             try {
                 String responseBody = new String(error.networkResponse.data, "utf-8");
-                Log.e("Registro", "Respuesta de error: " + responseBody);
+                Log.e(TAG, "Respuesta de error detallada: " + responseBody);
+                showToast(errorMsg + ": " + responseBody);
             } catch (UnsupportedEncodingException e) {
-                Log.e("Registro", "Error al decodificar respuesta", e);
+                Log.e(TAG, "Error al decodificar respuesta", e);
+                showToast(errorMsg);
             }
+        } else if (error instanceof TimeoutError) {
+            Log.e(TAG, "Error de timeout");
+            showToast("Tiempo de espera agotado. Verifica tu conexión");
+        } else if (error instanceof NoConnectionError) {
+            Log.e(TAG, "Error de conexión");
+            showToast("No se pudo conectar al servidor. Verifica tu conexión a internet");
+        } else if (error.getMessage() != null) {
+            Log.e(TAG, "Error message: " + error.getMessage());
+            showToast(errorMsg + ": " + error.getMessage());
+        } else {
+            Log.e(TAG, "Error desconocido de conexión", error);
+            showToast(errorMsg);
         }
-        showToast(errorMsg);
     }
 
     private void showToast(String message) {
