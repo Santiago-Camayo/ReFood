@@ -17,7 +17,7 @@
     <string name="donar">DONAR</string>
     <string name="recibir">BUSCAR DONACIONES</string>
     <string name="publicaciones">PUBLICACIONES</string>
-    <string name="detallespubli">Detalles publicacion</string>
+    <string name="detallespubli">Detalles publicacion</string>PP
     <string name="detallesentrega">DETALLES DE ENTREGA</string>
     <string name="detallesdonacion">Detalles De La Donacion </string>
     <string name="recoger">Recoger</string>
@@ -47,7 +47,7 @@
     <string name="configuraciones">Configuraciones</string>
     <string name="seguridad">Seguridad</string>
     <string name="Editar_Perfil">Editar Perfil</string>
-    <string name="notis">Notificaciones</string>
+    <string name="tema">Tema</string>
     <string name="idioma">Idioma</string>
     <string name="edit_profile">Editar Perfil</string>
     <string name="name">Nombre</string>
@@ -67,4 +67,5 @@
     <string name="fecha_publicacion">13/03/2025</string>
     <string name="hora_publicacion">12:00</string>"
     <string name="elminarperfil">Eliminar Usuario</string>
+    <string name="notis">Notificaciones</string>
 </resources>

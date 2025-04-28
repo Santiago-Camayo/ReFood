@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Juan Perez"
-                android:textColor="@color/light_blue_A200"
+                android:textColor="@color/black"
                 android:textSize="25dp"
                 android:layout_gravity="center_horizontal"/>
 
@@ -85,7 +85,8 @@
             <ListView
                 android:id="@+id/listproductos"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:background="@color/light_blue_600"/>
 
         </androidx.cardview.widget.CardView>
 

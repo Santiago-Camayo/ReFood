@@ -47,7 +47,7 @@
             android:contentDescription="@string/configuraciones"
             android:layout_width="54dp"
             android:layout_height="54dp"
-            android:src="@drawable/icono_usuario"
+            android:src="@drawable/avatarusuario"
             android:layout_marginEnd="10dp"/>
 
         <!-- Texto de opción -->
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Editar_Perfil"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -90,14 +90,14 @@
             android:layout_width="51dp"
             android:layout_height="51dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/notificaciones_icono"/>
+            android:src="@drawable/notificacion"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/notis"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>
         <Switch
@@ -106,7 +106,8 @@
             android:layout_height="wrap_content"
             android:minWidth="48dp"
             android:minHeight="48dp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            />
         <!-- android:thumb="@drawable/switch_thumb"/>-->
 
 
@@ -134,14 +135,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/candado_icono"/>
+            android:src="@drawable/seguridad"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/seguridad"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -174,14 +175,14 @@
             android:layout_width="51dp"
             android:layout_height="51dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/idioma_lenguaje"/>
+            android:src="@drawable/idioma"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/idioma"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -211,14 +212,14 @@
             android:layout_width="51dp"
             android:layout_height="51dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/borrar_usuario"/>
+            android:src="@drawable/borrarusuario"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/elminarperfil"
-            android:textColor="@color/white"
+            android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>
 
@@ -253,7 +254,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/notis"
+            android:text="@string/tema"
             android:textColor="@color/light_blue_600"
             android:textSize="24sp"
             android:textStyle="bold"/>

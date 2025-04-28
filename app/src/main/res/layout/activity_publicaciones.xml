@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Publicaciones"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
     <LinearLayout
         android:id="@+id/barradenavegacion"
@@ -63,13 +64,9 @@
             android:id="@+id/listaalimentos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:scrollbars="vertical"
-            android:layout_below="@id/search"/>
-
-
-
-
+            android:layout_below="@id/search"
+            android:layout_marginTop="-19dp"
+            android:scrollbars="vertical" />
 
 
     </RelativeLayout>
