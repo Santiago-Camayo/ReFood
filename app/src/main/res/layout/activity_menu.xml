@@ -54,14 +54,15 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:cardCornerRadius="25dp"
-            app:cardElevation="10dp"
+            app:cardElevation="30dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/azuldifuminado">
+            android:background="@drawable/card_border">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/deliniado_tarjeta">
 
                 <ImageView
                     android:id="@+id/ilustraciondonar"
@@ -97,14 +98,14 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             app:cardCornerRadius="25dp"
-            app:cardElevation="10dp"
-            android:layout_marginTop="15dp"
-            android:backgroundTint="@color/azuldifuminado">
+            app:cardElevation="30dp"
+            android:layout_marginTop="15dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:background="@drawable/deliniado_tarjeta">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
