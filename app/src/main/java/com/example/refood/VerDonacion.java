@@ -25,15 +25,16 @@ public class VerDonacion extends AppCompatActivity {
             // Extraer los datos de la donación
             String nombre = extras.getString("nombre", "");
             String contacto = extras.getString("contacto", "");
-            String descripcion = extras.getString("descripcion", "");
-            String nota = extras.getString("nota", "");
+            String tituloproducto = extras.getString("descripcion", "");
+            String descripcion = extras.getString("nota", "");
             String metodo = extras.getString("metodo", "");
 
             // Mostrar los datos en las vistas correspondientes
             ((TextView) findViewById(R.id.nombreDonante)).setText(nombre);
+            ((TextView) findViewById(R.id.tituloDonacion)).setText(tituloproducto); // Corregido: tituloproducto → tituloDonacion
             ((TextView) findViewById(R.id.descripcionDonacion)).setText(descripcion);
-            ((TextView) findViewById(R.id.webUbicacion)).setText(metodo);
-            ((TextView) findViewById(R.id.emailContacto)).setText(contacto);
+            ((TextView) findViewById(R.id.metodoentrega)).setText(metodo);
+            ((TextView) findViewById(R.id.contactoDonante)).setText(contacto);
 
             // Configurar el botón de chat para abrir WhatsApp
             findViewById(R.id.botonChat).setOnClickListener(v -> {

@@ -34,7 +34,7 @@ public class Registro extends AppCompatActivity {
     TextView btnsave;
     EditText etNombre, etApellido, etCorreo, etContrasena, etTelefono, etFecha, etGenero;
     RequestQueue requestQueue;
-    private static final String URL1 = "http://Refood.42web.io/android/save.php"; // Cambiado a HTTPS
+    private static final String URL1 = "https://dash.infinityfree.com/accounts/if0_38857385/domains/reefood.wuaze.com"; // Cambiado a HTTPS
     private static final String TAG = "Registro"; // Tag para logs
 
     @Override

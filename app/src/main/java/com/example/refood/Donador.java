@@ -15,16 +15,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class Donador extends AppCompatActivity {
 
     // Referencias a los elementos de la interfaz
     private EditText establishmentName;    // Campo para el nombre del donante
     private EditText contactNumber;        // Campo para el número de contacto
-    private EditText productDescription;   // Campo para la descripción de productos
+    private EditText titulodonacion;   // Campo para la descripción de productos
     private EditText note;                 // Campo para notas adicionales
     private RadioGroup deliveryMethodGroup; // Grupo de radio buttons para método de entrega
     private Button btnSiguiente;           // Botón para enviar el formulario
     private String metodoEntrega = "";     // Almacena el método de entrega seleccionado
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +40,7 @@ public class Donador extends AppCompatActivity {
         // Inicializar referencias a las vistas del layout
         establishmentName = findViewById(R.id.establishmentName);
         contactNumber = findViewById(R.id.contactNumber);
-        productDescription = findViewById(R.id.productDescription);
+        titulodonacion = findViewById(R.id.tituloproducto);
         note = findViewById(R.id.note);
         deliveryMethodGroup = findViewById(R.id.deliveryMethodGroup);
         btnSiguiente = findViewById(R.id.btnsiguiente);
@@ -59,13 +65,14 @@ public class Donador extends AppCompatActivity {
                 Donacion nuevaDonacion = new Donacion(
                         establishmentName.getText().toString(),
                         contactNumber.getText().toString(),
-                        productDescription.getText().toString(),
+                        titulodonacion.getText().toString(),
                         note.getText().toString(),
                         metodoEntrega
                 );
 
                 // Guardar la donación en la lista estática
                 DonacionesData.ListaDonaciones.add(nuevaDonacion);
+
 
                 // Mostrar mensaje de éxito
                 Toast.makeText(this, "Donación registrada con éxito", Toast.LENGTH_SHORT).show();
@@ -95,7 +102,7 @@ public class Donador extends AppCompatActivity {
         }
 
         // Verificar que la descripción no esté vacía
-        if (productDescription.getText().toString().trim().isEmpty()) {
+        if (titulodonacion.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Ingrese una descripción", Toast.LENGTH_SHORT).show();
             return false;
         }

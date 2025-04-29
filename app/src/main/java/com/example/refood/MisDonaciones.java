@@ -13,18 +13,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class MisDonaciones extends AppCompatActivity {
 
-    ImageButton btnconfiguracion,btnmisdonaciones,btncasa;
+    ImageButton btnconfiguracion, btnmisdonaciones, btncasa;
     ListView listaproductos;
 
-    String [] donaciones ={"Donacion1","Donacion2","donacion3","donacion4","donacion5","donacion6","donacion7"};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_donaciones);
 
-        btnconfiguracion =findViewById(R.id.btnConfiguraciones);
+        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
         btnconfiguracion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +35,7 @@ public class MisDonaciones extends AppCompatActivity {
                 startActivity(confi);
             }
         });
-        btnmisdonaciones =findViewById(R.id.btnperfil);
+        btnmisdonaciones = findViewById(R.id.btnperfil);
         btnmisdonaciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,9 +53,6 @@ public class MisDonaciones extends AppCompatActivity {
             }
         });
 
-        listaproductos =findViewById(R.id.listproductos);
-        ArrayAdapter<String>  adaplistproductos = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,donaciones);
-        listaproductos.setAdapter(adaplistproductos);
 
 
     }

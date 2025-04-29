@@ -54,6 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/barradenavegacion">
 
         <LinearLayout
+            android:id="@+id/contenidoprincipal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -107,7 +108,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/productDescription"
+                android:id="@+id/tituloproducto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
