@@ -30,6 +30,7 @@ import java.util.List;
 public class Publicaciones extends AppCompatActivity {
 
     ImageButton btnconfiguracion,btneditperfil,btncasa;
+
     private RecyclerView recyclerView;     // RecyclerView para mostrar las donaciones
     private DonacionAdapter adapter;       // Adaptador para el RecyclerView
     @Override

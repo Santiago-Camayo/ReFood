@@ -16,6 +16,7 @@ import java.util.List;
 public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHolder> {
 
     private List<Donacion> donaciones;  // Lista de donaciones a mostrar
+
     private Context context;            // Contexto para acceder a recursos
 
     /**
