@@ -270,4 +270,36 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/loading_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#CB000000"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true">
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            app:lottie_rawRes="@raw/loading"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:textColor="@color/light_blue_A200"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

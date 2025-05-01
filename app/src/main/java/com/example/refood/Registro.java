@@ -3,11 +3,13 @@ package com.example.refood;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -48,6 +50,8 @@ public class Registro extends AppCompatActivity {
     FirebaseAuth mAuth;
     // CAMBIO 2: Usar FirebaseFirestore en lugar de DatabaseReference
     FirebaseFirestore mFirestore;
+    private LinearLayout loadingContainer; // Referencia al LinearLayout contenedor
+    private static final int TIEMPO_DE_CARGA = 5000;
 
     //VARIABLES DE DATOS QUE VAMOS A REGISTRAR
     private String nombre = "";
@@ -70,6 +74,7 @@ public class Registro extends AppCompatActivity {
         // Initialize calendar
         calendar = Calendar.getInstance();
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
 
         // Initialize views
         initViews();
@@ -99,6 +104,9 @@ public class Registro extends AppCompatActivity {
         btnBack = findViewById(R.id.btnatras);
         btnRegistrar = findViewById(R.id.btnRegistrar);
         fabAddPhoto = findViewById(R.id.fabAddPhoto);
+
+        // Loading container
+        loadingContainer = findViewById(R.id.loading_container);
     }
 
     private void setupButtons() {
@@ -118,10 +126,10 @@ public class Registro extends AppCompatActivity {
                 genero = etGenero.getText().toString();
 
                 if (validateFields()){
-                    showToast("Validación exitosa. Procediendo al registro...");
+
                     registrarusuario();
                 }else{
-                    // Acción en caso de validación fallida
+
                 }
             }
         });
@@ -158,10 +166,24 @@ public class Registro extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task2) {
                                             if (task2.isSuccessful()) {
-                                                showToast("Registro exitoso");
-                                                Intent intent = new Intent(Registro.this, IniciarSesion.class);
-                                                startActivity(intent);
-                                                finish();
+                                                // mostrar el indicador de carga
+                                                loadingContainer.setVisibility(View.VISIBLE);
+                                                // Usar un Handler para esperar y luego navegar
+                                                new Handler().postDelayed(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+                                                        // se ejecutará después del retardo (1 segundo)
+                                                        // Ocultar el contenedor de carga
+                                                        loadingContainer.setVisibility(View.GONE);
+                                                        // Navegar a la siguiente actividad
+                                                        Intent intent = new Intent(Registro.this, IniciarSesion.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                }, TIEMPO_DE_CARGA); // El retardo en miliseg
+
+
+
                                             } else {
                                                 // Error al escribir en la base de datos
                                                 showToast("Error al guardar datos: " +
