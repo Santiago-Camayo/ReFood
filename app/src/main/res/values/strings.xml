@@ -84,4 +84,8 @@
     <string name="tit_verdonacion">Detalles de la Donación</string>
     <string name="chat">CHATEAR</string>
     <string name="Llamar">LLAMAR</string>
+    <string name="Login">Log in!</string>
+    <string name="Singup">Sing Up!</string>
+    <string name="Hello">Hello</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

@@ -26,7 +26,13 @@ public class Donador extends AppCompatActivity {
     private EditText note;                 // Campo para notas adicionales
     private RadioGroup deliveryMethodGroup; // Grupo de radio buttons para método de entrega
     private Button btnSiguiente;           // Botón para enviar el formulario
+
+    private ImageButton btnatras;
     private String metodoEntrega = "";     // Almacena el método de entrega seleccionado
+
+
+    //btn para regresar
+
 
 
 
@@ -36,6 +42,17 @@ public class Donador extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donador);
+
+
+        btnatras = findViewById(R.id.btnatras);
+        btnatras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Donador.this, Menu.class);
+                startActivity(intent);
+            }
+        });
+
 
         // Inicializar referencias a las vistas del layout
         establishmentName = findViewById(R.id.establishmentName);

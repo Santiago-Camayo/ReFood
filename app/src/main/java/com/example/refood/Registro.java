@@ -1,61 +1,91 @@
 package com.example.refood;
 
-import android.app.ProgressDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NoConnectionError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.TimeoutError;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+// CAMBIO 1: Importar Firestore en lugar de Realtime Database
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
-import java.io.UnsupportedEncodingException;
 
 public class Registro extends AppCompatActivity {
-    // Declaración de variables
-    ImageButton btnback;
-    TextView btnsave;
-    EditText etNombre, etApellido, etCorreo, etContrasena, etTelefono, etFecha, etGenero;
-    RequestQueue requestQueue;
-    private static final String URL1 = "https://dash.infinityfree.com/accounts/if0_38857385/domains/reefood.wuaze.com"; // Cambiado a HTTPS
-    private static final String TAG = "Registro"; // Tag para logs
+    // Variables para las vistas
+    ImageButton btnBack;
+    MaterialButton btnRegistrar;
+    TextInputEditText etNombre;
+    TextInputEditText etApellido;
+    TextInputEditText etCorreo;
+    TextInputEditText etContrasena;
+    TextInputEditText etTelefono;
+    TextInputEditText etFecha;
+    AutoCompleteTextView etGenero;
+    TextInputLayout tilFecha;
+    FloatingActionButton fabAddPhoto;
+    private Calendar calendar;
+    private SimpleDateFormat dateFormatter;
+    FirebaseAuth mAuth;
+    // CAMBIO 2: Usar FirebaseFirestore en lugar de DatabaseReference
+    FirebaseFirestore mFirestore;
+
+    //VARIABLES DE DATOS QUE VAMOS A REGISTRAR
+    private String nombre = "";
+    private String apellido = "";
+    private String correo = "";
+    private String contrasena = "";
+    private String telefono = "";
+    private String fecha = "";
+    private String genero = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        // Inicialización de Volley
-        requestQueue = Volley.newRequestQueue(this);
+        mAuth = FirebaseAuth.getInstance();
+        // CAMBIO 3: Inicializar Firestore en lugar de Realtime Database
+        mFirestore = FirebaseFirestore.getInstance();
 
-        // Inicialización de vistas
+        // Initialize calendar
+        calendar = Calendar.getInstance();
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+        // Initialize views
         initViews();
 
-        // Configuración del botón de guardar
-        setupSaveButton();
+        // Setup buttons
+        setupButtons();
 
-        // Configuración del botón de atrás
-        btnback.setOnClickListener(v -> onBackPressed());
+        // Setup date picker
+        setupDatePicker();
+
+        // Setup gender dropdown
+        setupGenderDropdown();
     }
 
     private void initViews() {
+        // Campos del formulario
         etNombre = findViewById(R.id.etnombre);
         etApellido = findViewById(R.id.etapellido);
         etCorreo = findViewById(R.id.etcorreo);
@@ -63,41 +93,165 @@ public class Registro extends AppCompatActivity {
         etTelefono = findViewById(R.id.ettelefono);
         etFecha = findViewById(R.id.etfecha);
         etGenero = findViewById(R.id.etgenero);
-        btnback = findViewById(R.id.btnatras);
-        btnsave = findViewById(R.id.btnguardar);
+        tilFecha = findViewById(R.id.tilFecha);
+
+        // Botones
+        btnBack = findViewById(R.id.btnatras);
+        btnRegistrar = findViewById(R.id.btnRegistrar);
+        fabAddPhoto = findViewById(R.id.fabAddPhoto);
     }
 
-    private void setupSaveButton() {
-        btnsave.setOnClickListener(v -> {
-            // Obtener valores de los campos
-            String nombre = etNombre.getText().toString().trim();
-            String apellido = etApellido.getText().toString().trim();
-            String correo = etCorreo.getText().toString().trim();
-            String contrasena = etContrasena.getText().toString().trim();
-            String telefono = etTelefono.getText().toString().trim();
-            String fecha = etFecha.getText().toString().trim();
-            String genero = etGenero.getText().toString().trim();
+    private void setupButtons() {
+        // Botón de regresar
+        btnBack.setOnClickListener(v -> onBackPressed());
 
-            // Validar campos
-            if (!validateFields(nombre, apellido, correo, contrasena, telefono, fecha, genero)) {
-                return;
+        // Botón de registrar
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nombre = etNombre.getText().toString();
+                apellido = etApellido.getText().toString();
+                correo = etCorreo.getText().toString();
+                contrasena = etContrasena.getText().toString();
+                telefono = etTelefono.getText().toString();
+                fecha = etFecha.getText().toString();
+                genero = etGenero.getText().toString();
+
+                if (validateFields()){
+                    showToast("Validación exitosa. Procediendo al registro...");
+                    registrarusuario();
+                }else{
+                    // Acción en caso de validación fallida
+                }
             }
-
-            // Enviar datos al servidor
-            registerUser(nombre, apellido, correo, contrasena, telefono, fecha, genero);
+        });
+        // Botón de foto
+        fabAddPhoto.setOnClickListener(v -> {
+            showToast("Seleccionar foto de perfil");
+            // Aquí iría la lógica de selección de foto
         });
     }
 
-    private boolean validateFields(String nombre, String apellido, String correo,
-                                   String contrasena, String telefono, String fecha, String genero) {
-        // Validar campos vacíos
+    private void registrarusuario() {
+        // Mostrar un indicador de carga
+        // Podrías agregar un ProgressDialog o alguna interfaz de carga aquí
+
+        mAuth.createUserWithEmailAndPassword(correo, contrasena)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Autenticación exitosa, proceder a almacenar datos del usuario
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("nombre", nombre);
+                            userData.put("apellido", apellido);
+                            userData.put("correo", correo);
+                            userData.put("telefono", telefono);
+                            userData.put("fechaNacimiento", fecha);
+                            userData.put("genero", genero);
+
+                            String id = mAuth.getCurrentUser().getUid();
+
+                            // CAMBIO 4: Usar Firestore para almacenar datos
+                            mFirestore.collection("usuarios").document(id).set(userData)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task2) {
+                                            if (task2.isSuccessful()) {
+                                                showToast("Registro exitoso");
+                                                Intent intent = new Intent(Registro.this, IniciarSesion.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                // Error al escribir en la base de datos
+                                                showToast("Error al guardar datos: " +
+                                                        (task2.getException() != null ?
+                                                                task2.getException().getMessage() : "Error desconocido"));
+
+                                                // Ya que la autenticación fue exitosa pero el almacenamiento de datos falló,
+                                                // considera eliminar la cuenta de usuario creada
+                                                if (mAuth.getCurrentUser() != null) {
+                                                    mAuth.getCurrentUser().delete();
+                                                }
+                                            }
+                                        }
+                                    });
+                        } else {
+                            // Autenticación fallida
+                            String errorMsg = "Error en el registro";
+                            if (task.getException() != null) {
+                                // Obtener el mensaje específico del error de Firebase
+                                String firebaseError = task.getException().getMessage();
+                                if (firebaseError != null) {
+                                    if (firebaseError.contains("email address is already in use")) {
+                                        errorMsg = "Este correo ya está registrado";
+                                    } else if (firebaseError.contains("password is invalid")) {
+                                        errorMsg = "La contraseña no cumple con los requisitos de seguridad";
+                                    } else if (firebaseError.contains("network error")) {
+                                        errorMsg = "Error de conexión a internet";
+                                    }
+                                }
+                            }
+                            showToast(errorMsg);
+                        }
+                    }
+                });
+    }
+
+    private void setupDatePicker() {
+        // Configurar listener de clic para el campo de fecha
+        etFecha.setOnClickListener(v -> showDatePickerDialog());
+
+        // Configurar listener de clic para el icono de calendario
+        tilFecha.setEndIconOnClickListener(v -> showDatePickerDialog());
+    }
+
+    private void showDatePickerDialog() {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (view, year, month, dayOfMonth) -> {
+                    calendar.set(Calendar.YEAR, year);
+                    calendar.set(Calendar.MONTH, month);
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    etFecha.setText(dateFormatter.format(calendar.getTime()));
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.show();
+    }
+
+    private void setupGenderDropdown() {
+        // Opciones de género para el desplegable
+        String[] genderOptions = new String[]{"Masculino", "Femenino", "No binario", "Prefiero no decir"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_dropdown_item_1line,
+                genderOptions
+        );
+        etGenero.setAdapter(adapter);
+    }
+
+    private boolean validateFields() {
+        // Obtener valores de los campos
+        String nombre = etNombre.getText().toString().trim();
+        String apellido = etApellido.getText().toString().trim();
+        String correo = etCorreo.getText().toString().trim();
+        String contrasena = etContrasena.getText().toString().trim();
+        String telefono = etTelefono.getText().toString().trim();
+        String fecha = etFecha.getText().toString().trim();
+        String genero = etGenero.getText().toString().trim();
+
+        // Verificar campos vacíos
         if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() ||
                 contrasena.isEmpty() || telefono.isEmpty() || fecha.isEmpty() || genero.isEmpty()) {
             showToast("Todos los campos son obligatorios");
             return false;
         }
 
-        // Validar formato de email
+        // Validar formato de correo
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             showToast("Ingrese un correo electrónico válido");
             return false;
@@ -108,124 +262,16 @@ public class Registro extends AppCompatActivity {
             showToast("Teléfono debe contener exactamente 10 dígitos");
             return false;
         }
+        // Validar formato de contraseña (al menos 8 caracteres)
+        if (contrasena.length() < 8) {
+            showToast("La contraseña debe tener al menos 8 caracteres");
+            return false;
+        }
 
         return true;
     }
 
-    private void registerUser(String nombre, String apellido, String correo,
-                              String contrasena, String telefono, String fecha, String genero) {
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Registrando...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        // Agregar logs para depuración
-        Log.d(TAG, "Enviando solicitud a: " + URL1);
-        Log.d(TAG, "Datos: nombre=" + nombre + ", apellido=" + apellido +
-                ", correo=" + correo + ", telefono=" + telefono);
-
-        StringRequest stringRequest = new StringRequest(
-                Request.Method.POST,
-                URL1,
-                response -> handleResponse(response, progressDialog),
-                error -> handleError(error, progressDialog)) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/x-www-form-urlencoded");
-                headers.put("User-Agent", "RefoodApp/1.0 Android");
-                // Agregar cabeceras CORS
-                headers.put("Accept", "application/json");
-                return headers;
-            }
-
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("nombre", nombre);
-                params.put("apellido", apellido);
-                params.put("correo", correo);
-                params.put("contrasena", contrasena);
-                params.put("telefono", telefono);
-                params.put("fecha", fecha);
-                params.put("genero", genero);
-                // Opcional: parámetros que pueden ser útiles aunque no se usen
-                params.put("tipodonacion", "");
-                params.put("cantidad", "0");
-                params.put("descripcion", "");
-                return params;
-            }
-        };
-
-        // Configurar una política de reintento más tolerante
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                15000,  // 15 segundos de timeout
-                2,      // 2 reintentos máximos
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
-
-        // Añadir la solicitud a la cola
-        requestQueue.add(stringRequest);
-    }
-
-    private void handleResponse(String response, ProgressDialog progressDialog) {
-        progressDialog.dismiss();
-
-        // Registrar la respuesta bruta para depuración
-        Log.d(TAG, "Respuesta del servidor: " + response);
-
-        // Verificar si la respuesta parece ser HTML en lugar de JSON
-        if (response.contains("<") && response.contains(">")) {
-            showToast("Error: El servidor ha devuelto una respuesta HTML en lugar de JSON");
-            Log.e(TAG, "El servidor devolvió HTML en lugar de JSON: " + response);
-            return;
-        }
-
-        try {
-            JSONObject jsonResponse = new JSONObject(response);
-            if (jsonResponse.getString("status").equals("success")) {
-                showToast(jsonResponse.getString("message"));
-                startActivity(new Intent(this, MainActivity.class));
-                finish();
-            } else {
-                showToast("Error: " + jsonResponse.getString("message"));
-            }
-        } catch (JSONException e) {
-            Log.e(TAG, "Error al analizar JSON", e);
-            showToast("Error en formato de respuesta del servidor");
-        }
-    }
-
-    private void handleError(VolleyError error, ProgressDialog progressDialog) {
-        progressDialog.dismiss();
-        String errorMsg = "Error de conexión";
-
-        if (error.networkResponse != null) {
-            errorMsg += " (Código: " + error.networkResponse.statusCode + ")";
-            try {
-                String responseBody = new String(error.networkResponse.data, "utf-8");
-                Log.e(TAG, "Respuesta de error detallada: " + responseBody);
-                showToast(errorMsg + ": " + responseBody);
-            } catch (UnsupportedEncodingException e) {
-                Log.e(TAG, "Error al decodificar respuesta", e);
-                showToast(errorMsg);
-            }
-        } else if (error instanceof TimeoutError) {
-            Log.e(TAG, "Error de timeout");
-            showToast("Tiempo de espera agotado. Verifica tu conexión");
-        } else if (error instanceof NoConnectionError) {
-            Log.e(TAG, "Error de conexión");
-            showToast("No se pudo conectar al servidor. Verifica tu conexión a internet");
-        } else if (error.getMessage() != null) {
-            Log.e(TAG, "Error message: " + error.getMessage());
-            showToast(errorMsg + ": " + error.getMessage());
-        } else {
-            Log.e(TAG, "Error desconocido de conexión", error);
-            showToast(errorMsg);
-        }
-    }
-
     private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
