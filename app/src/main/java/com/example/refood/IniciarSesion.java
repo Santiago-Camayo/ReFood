@@ -3,7 +3,9 @@ package com.example.refood;
 import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +32,8 @@ public class IniciarSesion extends AppCompatActivity {
     private MaterialButton botonRegistrarse;
     private MaterialButton botonOlvidoPassword;
 
+    private LinearLayout pantallacarga;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class IniciarSesion extends AppCompatActivity {
         botonIniciarSesion = findViewById(R.id.login_button);
         botonRegistrarse = findViewById(R.id.register_button);
         botonOlvidoPassword = findViewById(R.id.forgot_password_button);
+        pantallacarga = findViewById(R.id.loading_container);
 
         // El listener del botón solo llama a intentarIniciarSesion
         botonIniciarSesion.setOnClickListener(new View.OnClickListener() {
@@ -145,13 +150,10 @@ public class IniciarSesion extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // Ocultar indicador de carga
-                        // mostrarCargando(false);
 
                         if (task.isSuccessful()) {
                             // Inicio de sesión exitoso
-                            Toast.makeText(IniciarSesion.this, "¡Bienvenido!", Toast.LENGTH_SHORT).show();
-                            navegarAlMenu();
+                             cargarsiguientepantalla();
                         } else {
                             // Manejo detallado de errores
                             manejarErrorAutenticacion(task.getException());
@@ -199,26 +201,22 @@ public class IniciarSesion extends AppCompatActivity {
         return email.matches(pattern);
     }
 
-    private void navegarAlMenu() {
-        // Crea un Intent para iniciar la actividad Menu
-        Intent menu = new Intent(IniciarSesion.this, Menu.class);
-        startActivity(menu);
-        finish(); // Cierra la actividad actual para que el usuario no pueda volver atrás
+
+
+
+    //metodo para mostrar un pantalla de carga y navegar a la panatlla de inicio
+    private void cargarsiguientepantalla(){
+        pantallacarga.setVisibility(View.VISIBLE);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                pantallacarga.setVisibility(View.GONE);
+                Intent menu = new Intent(IniciarSesion.this, Menu.class);
+                startActivity(menu);
+                finish();
+            }
+        }, 5000);
+
     }
-
-    // Método para mostrar/ocultar un indicador de carga (puedes implementarlo si quieres)
-
-    private void mostrarCargando(boolean mostrar) {
-        Notification.Builder progressBar = null;
-        if (mostrar) {
-            // Muestra el indicador de carga
-            progressBar.setVisibility(Notification.VISIBILITY_PRIVATE);
-            botonIniciarSesion.setEnabled(false);
-        } else {
-            // Oculta el indicador de carga
-            progressBar.setVisibility(Notification.VISIBILITY_PUBLIC);
-            botonIniciarSesion.setEnabled(true);
-        }
-    }
-
 }

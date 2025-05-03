@@ -48,7 +48,7 @@ public class Registro extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormatter;
     FirebaseAuth mAuth;
-    // CAMBIO 2: Usar FirebaseFirestore en lugar de DatabaseReference
+
     FirebaseFirestore mFirestore;
     private LinearLayout loadingContainer; // Referencia al LinearLayout contenedor
     private static final int TIEMPO_DE_CARGA = 5000;
