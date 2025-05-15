@@ -58,6 +58,7 @@
                 android:src="@drawable/usuario1"
                 android:layout_gravity="center_horizontal"/>
             <EditText
+                android:id="@+id/nombreusuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Juan Perez"
