@@ -19,24 +19,30 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+// Clase para gestionar la pantalla de configuraciones de la app
 public class Configuraciones extends AppCompatActivity {
 
-    private Switch switchNotificaciones;
-    private SwitchMaterial swDarkMode;
+    // Declaración de controles de la interfaz
+    private Switch switchNotificaciones;   // Control para activar o desactivar notificaciones
+    private SwitchMaterial swDarkMode;     // Control para activar/desactivar modo oscuro
 
-    ImageButton botonhome,btneditperfil;
+    // Botones de navegación
+    ImageButton botonhome, btneditperfil;
 
-    View editarperfil;
-    LinearLayout btnelminarperfil;
+    // Elementos adicionales de la interfaz
+    View editarperfil;                     // Vista para acceder a edición de perfil
+    LinearLayout btnelminarperfil;         // Botón para eliminar el perfil
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuraciones);
 
+        // Inicialización de los componentes de la interfaz
         switchNotificaciones = findViewById(R.id.switch_notificaciones);
-        swDarkMode=findViewById(R.id.swmodooscuro);
+        swDarkMode = findViewById(R.id.swmodooscuro);
 
+        // Configuración del switch de modo oscuro
         swDarkMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -44,13 +50,7 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
-
-
-        
-        
-
-
-        // Establecer un listener para el Switch
+        // Configuración del switch de notificaciones
         switchNotificaciones.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -63,6 +63,8 @@ public class Configuraciones extends AppCompatActivity {
                 }
             }
         });
+
+        // Configuración del botón para editar perfil
         btneditperfil = findViewById(R.id.btnperfil);
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +74,7 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
+        // Configuración del botón para volver al menú principal
         botonhome = findViewById(R.id.homeButton);
         botonhome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +84,7 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
+        // Configuración de la vista para editar perfil
         editarperfil = findViewById(R.id.Texteditarperfil);
         editarperfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +94,7 @@ public class Configuraciones extends AppCompatActivity {
             }
         });
 
+        // Configuración del botón para eliminar perfil
         btnelminarperfil=findViewById(R.id.btnelminarperfil);
         btnelminarperfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,13 +102,9 @@ public class Configuraciones extends AppCompatActivity {
                 Dialogoconfirmacion();
             }
         });
-
     }
 
-
-
-
-
+    // Método para mostrar diálogo de confirmación al eliminar cuenta
     private void Dialogoconfirmacion() {
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar cuenta") // Título del diálogo
@@ -111,33 +112,31 @@ public class Configuraciones extends AppCompatActivity {
                 .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // --- EL USUARIO HIZO CLIC EN "SÍ, ELIMINAR" ---
+                        // El usuario confirma la eliminación de cuenta
                         Log.d("Configuraciones", "Usuario confirmó eliminación.");
 
-                        // *** --- PUNTO DE INTEGRACIÓN PARA TU AMIGO --- ***
-                        // *** Aquí es donde tu amigo DEBE agregar el código para llamar al backend ***
-                        // *** usando Volley para eliminar la cuenta en la base de datos SQL.    ***
-                        // *** Una vez que la eliminación en el backend sea exitosa, DEBE:      ***
-                        // *** 1. Limpiar los datos de sesión locales del usuario en la app.      ***
-                        // *** 2. Redirigir al usuario a la pantalla de inicio de sesión/principal.***
-                        // ***************************************************************************
+                        // PUNTO DE INTEGRACIÓN PARA BACKEND
+                        // Aquí se debe agregar el código para llamar al backend
+                        // usando Volley para eliminar la cuenta en la base de datos SQL.
+                        // Una vez que la eliminación en el backend sea exitosa, se debe:
+                        // 1. Limpiar los datos de sesión locales del usuario en la app.
+                        // 2. Redirigir al usuario a la pantalla de inicio de sesión/principal.
 
                         Toast.makeText(Configuraciones.this, "Procediendo a eliminar cuenta...", Toast.LENGTH_SHORT).show();
-                        // Llama a la función real de eliminación aquí (que tu amigo implementará)
-                        // Por ahora, solo mostraremos un log/toast indicando que la acción ocurriría.
+                        // Llamada a la función de eliminación (pendiente de implementar)
                         Log.i("Configuraciones", "!!! Llama a la función de eliminación del backend AQUÍ !!!");
-                        // Ejemplo: deleteAccountInBackendUsingVolley(); // <-- Tu amigo implementará esta llamada
+                        // Ejemplo: deleteAccountInBackendUsingVolley();
                     }
                 })
                 .setNegativeButton("No, cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // --- EL USUARIO HIZO CLIC EN "NO, CANCELAR" ---
+                        // El usuario cancela la eliminación
                         Log.d("Configuraciones", "Usuario canceló eliminación.");
                         dialog.dismiss(); // Cierra el diálogo sin hacer nada más
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert) // Opcional: un icono de advertencia
+                .setIcon(android.R.drawable.ic_dialog_alert) // Icono de advertencia
                 .show(); // Muestra el diálogo
     }
 }

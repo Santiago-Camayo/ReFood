@@ -40,7 +40,7 @@ public class MisDonaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_donaciones);
 
-        //  Inicializar Firebase
+        // Inicializar Firebase
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         iduser = mAuth.getCurrentUser().getUid();
@@ -81,11 +81,12 @@ public class MisDonaciones extends AppCompatActivity {
         extraerdatosusuario();
     }
 
+    // Método para obtener los datos del usuario actual desde Firestore
     public void extraerdatosusuario() {
         mFirestore.collection("usuarios").document(iduser).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()) { //si el usuario existe asignarlos al textview
+                if (documentSnapshot.exists()) { // Si el usuario existe, asignar datos al textview
                     String nombre = documentSnapshot.getString("nombre");
                     String apellido = documentSnapshot.getString("apellido");
                     nombreusuario.setText(nombre + " " + apellido);

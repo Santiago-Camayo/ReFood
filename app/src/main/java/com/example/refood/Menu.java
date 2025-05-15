@@ -15,15 +15,22 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Menu extends AppCompatActivity {
 
-    Button btndonar,btnrecibir;
-    ImageButton btnconfiguracion,btneditperfil;
+    // Declaración de elementos UI
+    Button btndonar, btnrecibir;
+    ImageButton btnconfiguracion, btneditperfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        btndonar = findViewById(R.id.botonDonar);
 
+        // Inicialización de componentes visuales
+        btndonar = findViewById(R.id.botonDonar);
+        btnrecibir = findViewById(R.id.botonrecibir);
+        btnconfiguracion = findViewById(R.id.btnConfiguraciones);
+        btneditperfil = findViewById(R.id.btnperfil);
+
+        // Configuración del botón Donar - Navega a la pantalla de donador
         btndonar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,15 +38,17 @@ public class Menu extends AppCompatActivity {
                 startActivity(donar);
             }
         });
-        btnrecibir = findViewById(R.id.botonrecibir);
+
+        // Configuración del botón Recibir - Navega a la pantalla de publicaciones
         btnrecibir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent recibir = new Intent(Menu.this,Publicaciones.class);
+                Intent recibir = new Intent(Menu.this, Publicaciones.class);
                 startActivity(recibir);
             }
         });
-        btnconfiguracion =findViewById(R.id.btnConfiguraciones);
+
+        // Configuración del botón de Configuraciones
         btnconfiguracion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +56,8 @@ public class Menu extends AppCompatActivity {
                 startActivity(confi);
             }
         });
-        btneditperfil =findViewById(R.id.btnperfil);
+
+        // Configuración del botón de perfil - Navega a Mis Donaciones
         btneditperfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +65,5 @@ public class Menu extends AppCompatActivity {
                 startActivity(profile);
             }
         });
-
-
     }
 }

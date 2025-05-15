@@ -23,7 +23,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-// CAMBIO 1: Importar Firestore en lugar de Realtime Database
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -45,15 +44,20 @@ public class Registro extends AppCompatActivity {
     AutoCompleteTextView etGenero;
     TextInputLayout tilFecha;
     FloatingActionButton fabAddPhoto;
+
+    // Variables para el calendario y formato de fecha
     private Calendar calendar;
     private SimpleDateFormat dateFormatter;
+
+    // Firebase
     FirebaseAuth mAuth;
-
     FirebaseFirestore mFirestore;
-    private LinearLayout loadingContainer; // Referencia al LinearLayout contenedor
-    private static final int TIEMPO_DE_CARGA = 5000;
 
-    //VARIABLES DE DATOS QUE VAMOS A REGISTRAR
+    // Elementos visuales para la carga
+    private LinearLayout loadingContainer;
+    private static final int TIEMPO_DE_CARGA = 5000; // 5 segundos para mostrar pantalla de carga
+
+    // Variables de datos a registrar
     private String nombre = "";
     private String apellido = "";
     private String correo = "";
@@ -67,28 +71,28 @@ public class Registro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
+        // Inicializar Firebase
         mAuth = FirebaseAuth.getInstance();
-        // CAMBIO 3: Inicializar Firestore en lugar de Realtime Database
         mFirestore = FirebaseFirestore.getInstance();
 
-        // Initialize calendar
+        // Inicializar calendario para selector de fecha
         calendar = Calendar.getInstance();
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
 
-
-        // Initialize views
+        // Inicializar vistas
         initViews();
 
-        // Setup buttons
+        // Configurar botones
         setupButtons();
 
-        // Setup date picker
+        // Configurar selector de fecha
         setupDatePicker();
 
-        // Setup gender dropdown
+        // Configurar dropdown de género
         setupGenderDropdown();
     }
 
+    // Método para inicializar las referencias a las vistas del layout
     private void initViews() {
         // Campos del formulario
         etNombre = findViewById(R.id.etnombre);
@@ -105,10 +109,11 @@ public class Registro extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegistrar);
         fabAddPhoto = findViewById(R.id.fabAddPhoto);
 
-        // Loading container
+        // Contenedor para pantalla de carga
         loadingContainer = findViewById(R.id.loading_container);
     }
 
+    // Método para configurar los listeners de los botones
     private void setupButtons() {
         // Botón de regresar
         btnBack.setOnClickListener(v -> onBackPressed());
@@ -117,6 +122,7 @@ public class Registro extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Obtener valores de los campos
                 nombre = etNombre.getText().toString();
                 apellido = etApellido.getText().toString();
                 correo = etCorreo.getText().toString();
@@ -125,25 +131,23 @@ public class Registro extends AppCompatActivity {
                 fecha = etFecha.getText().toString();
                 genero = etGenero.getText().toString();
 
+                // Validar campos antes de registrar
                 if (validateFields()){
-
                     registrarusuario();
-                }else{
-
                 }
             }
         });
-        // Botón de foto
+
+        // Botón para agregar foto de perfil
         fabAddPhoto.setOnClickListener(v -> {
             showToast("Seleccionar foto de perfil");
             // Aquí iría la lógica de selección de foto
         });
     }
 
+    // Método para crear usuario en Firebase Authentication y guardar datos en Firestore
     private void registrarusuario() {
-        // Mostrar un indicador de carga
-        // Podrías agregar un ProgressDialog o alguna interfaz de carga aquí
-
+        // Primero crear el usuario en Authentication
         mAuth.createUserWithEmailAndPassword(correo, contrasena)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -160,29 +164,28 @@ public class Registro extends AppCompatActivity {
 
                             String id = mAuth.getCurrentUser().getUid();
 
-                            // CAMBIO 4: Usar Firestore para almacenar datos
+                            // Guardar información del usuario en Firestore
                             mFirestore.collection("usuarios").document(id).set(userData)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task2) {
                                             if (task2.isSuccessful()) {
-                                                // mostrar el indicador de carga
+                                                // Mostrar pantalla de carga
                                                 loadingContainer.setVisibility(View.VISIBLE);
-                                                // Usar un Handler para esperar y luego navegar
+
+                                                // Esperar y luego navegar a la pantalla de inicio de sesión
                                                 new Handler().postDelayed(new Runnable() {
                                                     @Override
                                                     public void run() {
-                                                        // se ejecutará después del retardo (1 segundo)
-                                                        // Ocultar el contenedor de carga
+                                                        // Ocultar pantalla de carga
                                                         loadingContainer.setVisibility(View.GONE);
-                                                        // Navegar a la siguiente actividad
+
+                                                        // Navegar a inicio de sesión
                                                         Intent intent = new Intent(Registro.this, IniciarSesion.class);
                                                         startActivity(intent);
                                                         finish();
                                                     }
-                                                }, TIEMPO_DE_CARGA); // El retardo en miliseg
-
-
+                                                }, TIEMPO_DE_CARGA);
 
                                             } else {
                                                 // Error al escribir en la base de datos
@@ -190,8 +193,7 @@ public class Registro extends AppCompatActivity {
                                                         (task2.getException() != null ?
                                                                 task2.getException().getMessage() : "Error desconocido"));
 
-                                                // Ya que la autenticación fue exitosa pero el almacenamiento de datos falló,
-                                                // considera eliminar la cuenta de usuario creada
+                                                // Eliminar cuenta creada ya que no se pudieron guardar los datos
                                                 if (mAuth.getCurrentUser() != null) {
                                                     mAuth.getCurrentUser().delete();
                                                 }
@@ -199,10 +201,10 @@ public class Registro extends AppCompatActivity {
                                         }
                                     });
                         } else {
-                            // Autenticación fallida
+                            // Autenticación fallida, mostrar mensaje específico según el error
                             String errorMsg = "Error en el registro";
                             if (task.getException() != null) {
-                                // Obtener el mensaje específico del error de Firebase
+                                // Obtener mensaje específico del error de Firebase
                                 String firebaseError = task.getException().getMessage();
                                 if (firebaseError != null) {
                                     if (firebaseError.contains("email address is already in use")) {
@@ -220,14 +222,16 @@ public class Registro extends AppCompatActivity {
                 });
     }
 
+    // Método para configurar el selector de fecha
     private void setupDatePicker() {
-        // Configurar listener de clic para el campo de fecha
+        // Configurar listener para el campo de fecha
         etFecha.setOnClickListener(v -> showDatePickerDialog());
 
-        // Configurar listener de clic para el icono de calendario
+        // Configurar listener para el icono de calendario
         tilFecha.setEndIconOnClickListener(v -> showDatePickerDialog());
     }
 
+    // Método para mostrar el diálogo de selección de fecha
     private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 this,
@@ -241,10 +245,12 @@ public class Registro extends AppCompatActivity {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
         );
+        // Limitar a fecha actual como máximo seleccionable
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         datePickerDialog.show();
     }
 
+    // Método para configurar las opciones del dropdown de género
     private void setupGenderDropdown() {
         // Opciones de género para el desplegable
         String[] genderOptions = new String[]{"Masculino", "Femenino", "No binario", "Prefiero no decir"};
@@ -256,6 +262,7 @@ public class Registro extends AppCompatActivity {
         etGenero.setAdapter(adapter);
     }
 
+    // Método para validar campos del formulario
     private boolean validateFields() {
         // Obtener valores de los campos
         String nombre = etNombre.getText().toString().trim();
@@ -266,7 +273,7 @@ public class Registro extends AppCompatActivity {
         String fecha = etFecha.getText().toString().trim();
         String genero = etGenero.getText().toString().trim();
 
-        // Verificar campos vacíos
+        // Verificar que no haya campos vacíos
         if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() ||
                 contrasena.isEmpty() || telefono.isEmpty() || fecha.isEmpty() || genero.isEmpty()) {
             showToast("Todos los campos son obligatorios");
@@ -284,7 +291,7 @@ public class Registro extends AppCompatActivity {
             showToast("Teléfono debe contener exactamente 10 dígitos");
             return false;
         }
-        // Validar formato de contraseña (al menos 8 caracteres)
+        // Validar longitud mínima de contraseña
         if (contrasena.length() < 8) {
             showToast("La contraseña debe tener al menos 8 caracteres");
             return false;
@@ -293,6 +300,7 @@ public class Registro extends AppCompatActivity {
         return true;
     }
 
+    // Método para mostrar mensajes Toast
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

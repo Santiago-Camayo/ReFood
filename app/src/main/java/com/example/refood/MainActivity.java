@@ -20,22 +20,23 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declaración de elementos UI
     private ImageView backgroundImage;
     private ImageView logo;
-    private static final int SPLASH_DURATION = 3000; // 3 segundos
+    private static final int SPLASH_DURATION = 3000; // 3 segundos para la pantalla splash
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Ocultar la barra de navegación y la barra de estado para modo inmersivo
+        // Configuración para modo inmersivo - oculta barras del sistema
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
                         View.SYSTEM_UI_FLAG_FULLSCREEN |
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        // Inicializar vistas
+        // Inicialización de vistas
         backgroundImage = findViewById(R.id.background_image);
         logo = findViewById(R.id.logo);
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         backgroundImage.setVisibility(View.VISIBLE);
         logo.setVisibility(View.VISIBLE);
 
-        // Cargar y empezar la animación del fondo
+        // Animación para la imagen de fondo
         Animation backgroundAnim = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         backgroundImage.startAnimation(backgroundAnim);
 
@@ -51,19 +52,19 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Cargar y empezar la animación combinada del logo
+                // Animación del logo con un pequeño retraso para efecto visual
                 Animation logoAnim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.logo_animation);
                 logo.startAnimation(logoAnim);
             }
-        }, 300); // Pequeño retraso para que no empiecen exactamente al mismo tiempo
+        }, 300); // Pequeño retraso para secuenciar animaciones
 
-        // Configurar la transición a la siguiente actividad después del tiempo establecido
+        // Configuración de transición automática a pantalla de login
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent = new Intent(MainActivity.this, IniciarSesion.class);
                 startActivity(intent);
-                finish();
+                finish(); // Cierra esta actividad para que no se pueda volver atrás
             }
         }, SPLASH_DURATION);
     }

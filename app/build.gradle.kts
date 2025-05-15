@@ -46,6 +46,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-firestore:25.1.4")
     implementation ("com.google.firebase:firebase-messaging:24.1.1")
     implementation ("com.airbnb.android:lottie:6.0.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

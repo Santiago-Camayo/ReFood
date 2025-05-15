@@ -11,28 +11,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
+// Adaptador para mostrar las donaciones en un RecyclerView
 public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHolder> {
 
     private List<Donacion> donaciones;  // Lista de donaciones a mostrar
-
     private Context context;            // Contexto para acceder a recursos
 
-    /**
-     * Constructor del adaptador
-     * @param context El contexto de la actividad
-     * @param donaciones La lista de donaciones a mostrar
-     */
+    // Constructor que recibe la lista de donaciones y el contexto
     public DonacionAdapter(Context context, List<Donacion> donaciones) {
         this.context = context;
         this.donaciones = donaciones;
     }
 
-    /**
-     * Crea nuevas vistas (invocado por el layout manager)
-     * Infla el layout de cada elemento del RecyclerView
-     */
+    // Crea una nueva vista (invocado por el layout manager)
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,10 +37,7 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
         return new ViewHolder(view);
     }
 
-    /**
-     * Reemplaza el contenido de una vista (invocado por el layout manager)
-     * Asigna los datos de la donación a las vistas correspondientes
-     */
+    // Configura el contenido de cada vista con los datos de la donación
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Obtener la donación en la posición actual
@@ -53,6 +46,18 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
         // Mostrar los datos básicos en la tarjeta
         holder.nombreDonante.setText(donacion.getNombreDonante());
         holder.descripcionDonacion.setText(donacion.getDescripcion());
+
+        // Cargar imagen si está disponible
+        if (donacion.getImagenUrl() != null && !donacion.getImagenUrl().isEmpty()) {
+            Glide.with(context)
+                    .load(donacion.getImagenUrl())
+                    .apply(new RequestOptions().centerCrop())
+                    .placeholder(R.drawable.noimagen)
+                    .into(holder.imgAlimento);
+        } else {
+            // Si no hay imagen, mostrar imagen por defecto
+            holder.imgAlimento.setImageResource(R.drawable.noimagen);
+        }
 
         // Configurar el evento de clic para abrir la vista detallada
         holder.itemView.setOnClickListener(v -> {
@@ -66,23 +71,30 @@ public class DonacionAdapter extends RecyclerView.Adapter<DonacionAdapter.ViewHo
             intent.putExtra("nota", donacion.getNota());
             intent.putExtra("metodo", donacion.getMetodoEntrega());
 
-            // Iniciar la actividad
+            // Si hay ID de documento, pasarlo también (útil para futuras funcionalidades)
+            if (donacion.getId() != null) {
+                intent.putExtra("id", donacion.getId());
+            }
+
+            // Iniciar la actividad de detalle
             context.startActivity(intent);
         });
     }
 
-    /**
-     * Retorna la cantidad de elementos en la lista
-     */
+    // Retorna la cantidad de elementos en la lista
     @Override
     public int getItemCount() {
         return donaciones.size();
     }
 
-    /**
-     * Clase ViewHolder que contiene referencias a las vistas de cada elemento
-     * Mantiene las referencias para evitar llamadas repetidas a findViewById
-     */
+    // Actualiza la lista de donaciones con nuevos datos
+    public void actualizarDonaciones(List<Donacion> nuevasDonaciones) {
+        this.donaciones = nuevasDonaciones;
+        notifyDataSetChanged();
+    }
+
+    // Clase ViewHolder que contiene referencias a las vistas de cada elemento
+    // Mantiene las referencias para evitar llamadas repetidas a findViewById
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Referencias a las vistas del layout publicacion_item.xml
         TextView nombreDonante, descripcionDonacion;

@@ -2,57 +2,46 @@ package com.example.refood;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import java.util.ArrayList;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+// Clase para gestionar el formulario de creación de nuevas donaciones
 public class Donador extends AppCompatActivity {
 
     // Referencias a los elementos de la interfaz
     private EditText establishmentName;    // Campo para el nombre del donante
     private EditText contactNumber;        // Campo para el número de contacto
-    private EditText titulodonacion;   // Campo para la descripción de productos
+    private EditText titulodonacion;       // Campo para el título de la donación
     private EditText note;                 // Campo para notas adicionales
     private RadioGroup deliveryMethodGroup; // Grupo de radio buttons para método de entrega
     private Button btnSiguiente;           // Botón para enviar el formulario
-
-    private ImageButton btnatras;
+    private ImageButton btnatras;          // Botón para volver atrás
     private String metodoEntrega = "";     // Almacena el método de entrega seleccionado
 
-
-    //btn para regresar
-
-
-
-
-
+    // Instancia de Firestore
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donador);
 
+        // Inicializar Firestore
+        db = FirebaseFirestore.getInstance();
 
+        // Configuración del botón atrás para volver al menú
         btnatras = findViewById(R.id.btnatras);
-        btnatras.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Donador.this, Menu.class);
-                startActivity(intent);
-            }
+        btnatras.setOnClickListener(v -> {
+            Intent intent = new Intent(Donador.this, Menu.class);
+            startActivity(intent);
         });
-
 
         // Inicializar referencias a las vistas del layout
         establishmentName = findViewById(R.id.establishmentName);
@@ -63,7 +52,6 @@ public class Donador extends AppCompatActivity {
         btnSiguiente = findViewById(R.id.btnsiguiente);
 
         // Configurar listener para el grupo de radio buttons
-        // Detecta cuando el usuario selecciona un método de entrega
         deliveryMethodGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.recojerenubi) {
                 // Si selecciona "Recoger en ubicación"
@@ -78,33 +66,44 @@ public class Donador extends AppCompatActivity {
         btnSiguiente.setOnClickListener(v -> {
             // Verificar que todos los campos necesarios estén completos
             if (validateFields()) {
-                // Crear un nuevo objeto Donacion con los datos ingresados
-                Donacion nuevaDonacion = new Donacion(
-                        establishmentName.getText().toString(),
-                        contactNumber.getText().toString(),
-                        titulodonacion.getText().toString(),
-                        note.getText().toString(),
-                        metodoEntrega
-                );
-
-                // Guardar la donación en la lista estática
-                DonacionesData.ListaDonaciones.add(nuevaDonacion);
-
-
-                // Mostrar mensaje de éxito
-                Toast.makeText(this, "Donación registrada con éxito", Toast.LENGTH_SHORT).show();
-
-                // Ir a la actividad de publicaciones
-                startActivity(new Intent(Donador.this, Publicaciones.class));
-                finish(); // Cerrar esta actividad
+                guardarDonacionEnFirestore();
             }
         });
     }
 
-    /**
-     * Valida que los campos requeridos estén completos
-     * @return true si todos los campos están completos, false en caso contrario
-     */
+    // Guarda los datos de la donación en Firestore
+    private void guardarDonacionEnFirestore() {
+        // Mostrar mensaje de carga
+        Toast.makeText(this, "Guardando donación...", Toast.LENGTH_SHORT).show();
+
+        // Crear un nuevo objeto Donacion con los datos ingresados
+        Donacion nuevaDonacion = new Donacion(
+                establishmentName.getText().toString(),
+                contactNumber.getText().toString(),
+                titulodonacion.getText().toString(),
+                note.getText().toString(),
+                metodoEntrega
+        );
+
+        // Guardar en Firestore en la colección "donaciones"
+        db.collection("donaciones")
+                .add(nuevaDonacion)
+                .addOnSuccessListener(documentReference -> {
+                    // Éxito al guardar
+                    Toast.makeText(this, "Donación registrada con éxito", Toast.LENGTH_SHORT).show();
+
+                    // Ir a la actividad de publicaciones
+                    startActivity(new Intent(Donador.this, Publicaciones.class));
+                    finish(); // Cerrar esta actividad
+                })
+                .addOnFailureListener(e -> {
+                    // Error al guardar
+                    Toast.makeText(this, "Error al registrar la donación: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    // Valida que los campos requeridos estén completos
     private boolean validateFields() {
         // Verificar que el nombre no esté vacío
         if (establishmentName.getText().toString().trim().isEmpty()) {
@@ -120,7 +119,7 @@ public class Donador extends AppCompatActivity {
 
         // Verificar que la descripción no esté vacía
         if (titulodonacion.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Ingrese una descripción", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese el título de la donación", Toast.LENGTH_SHORT).show();
             return false;
         }
 

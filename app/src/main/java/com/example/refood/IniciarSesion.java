@@ -24,6 +24,7 @@ import com.google.firebase.FirebaseNetworkException;
 
 public class IniciarSesion extends AppCompatActivity {
 
+    // Declaración de componentes UI
     private TextInputLayout contenedorEmail;
     private TextInputLayout contenedorPassword;
     private TextInputEditText campoEmail;
@@ -31,7 +32,6 @@ public class IniciarSesion extends AppCompatActivity {
     private MaterialButton botonIniciarSesion;
     private MaterialButton botonRegistrarse;
     private MaterialButton botonOlvidoPassword;
-
     private LinearLayout pantallacarga;
 
     @Override
@@ -39,6 +39,7 @@ public class IniciarSesion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_iniciar_sesion);
 
+        // Inicialización de elementos visuales
         contenedorEmail = findViewById(R.id.email_layout);
         contenedorPassword = findViewById(R.id.password_layout);
         campoEmail = findViewById(R.id.email_edit_text);
@@ -48,7 +49,7 @@ public class IniciarSesion extends AppCompatActivity {
         botonOlvidoPassword = findViewById(R.id.forgot_password_button);
         pantallacarga = findViewById(R.id.loading_container);
 
-        // El listener del botón solo llama a intentarIniciarSesion
+        // Configuración del botón de inicio de sesión
         botonIniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +57,7 @@ public class IniciarSesion extends AppCompatActivity {
             }
         });
 
+        // Configuración del botón de registro - Navega a la pantalla de registro
         botonRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,10 +66,10 @@ public class IniciarSesion extends AppCompatActivity {
             }
         });
 
+        // Configuración del botón de recuperación de contraseña
         botonOlvidoPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Aquí podrías implementar la funcionalidad de recuperación de contraseña
                 String email = String.valueOf(campoEmail.getText());
                 if (email.isEmpty()) {
                     Toast.makeText(IniciarSesion.this, "Ingresa tu correo para recuperar tu contraseña", Toast.LENGTH_LONG).show();
@@ -87,6 +89,9 @@ public class IniciarSesion extends AppCompatActivity {
         });
     }
 
+    /**
+     * Envía un correo de recuperación de contraseña a través de Firebase
+     */
     private void enviarCorreoRecuperacion(String email) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -101,6 +106,9 @@ public class IniciarSesion extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Gestiona los diferentes tipos de errores durante la recuperación de contraseña
+     */
     private void manejarErrorRecuperacion(Exception exception) {
         String mensajeError = "No se pudo enviar el correo de recuperación";
 
@@ -113,6 +121,9 @@ public class IniciarSesion extends AppCompatActivity {
         Toast.makeText(IniciarSesion.this, mensajeError, Toast.LENGTH_LONG).show();
     }
 
+    /**
+     * Valida los campos y realiza el intento de inicio de sesión
+     */
     private void intentarIniciarSesion() {
         // Limpiar errores anteriores
         contenedorEmail.setError(null);
@@ -142,18 +153,14 @@ public class IniciarSesion extends AppCompatActivity {
             return;
         }
 
-        // Aquí podrías mostrar un indicador de carga
-        // mostrarCargando(true);
-
         // Intentar autenticación con Firebase
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, contraseña)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
                         if (task.isSuccessful()) {
                             // Inicio de sesión exitoso
-                             cargarsiguientepantalla();
+                            cargarsiguientepantalla();
                         } else {
                             // Manejo detallado de errores
                             manejarErrorAutenticacion(task.getException());
@@ -162,6 +169,9 @@ public class IniciarSesion extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Gestiona los diferentes tipos de errores durante la autenticación
+     */
     private void manejarErrorAutenticacion(Exception exception) {
         if (exception == null) {
             Toast.makeText(this, "Error desconocido al iniciar sesión", Toast.LENGTH_SHORT).show();
@@ -195,16 +205,18 @@ public class IniciarSesion extends AppCompatActivity {
         }
     }
 
+    /**
+     * Valida si un email tiene formato correcto
+     */
     private boolean esEmailValido(String email) {
-        // Validación más completa usando expresión regular
+        // Validación usando expresión regular
         String pattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         return email.matches(pattern);
     }
 
-
-
-
-    //metodo para mostrar un pantalla de carga y navegar a la panatlla de inicio
+    /**
+     * Muestra pantalla de carga y navega a la pantalla principal
+     */
     private void cargarsiguientepantalla(){
         pantallacarga.setVisibility(View.VISIBLE);
 
@@ -216,7 +228,6 @@ public class IniciarSesion extends AppCompatActivity {
                 startActivity(menu);
                 finish();
             }
-        }, 5000);
-
+        }, 5000); // Espera 5 segundos antes de navegar
     }
 }
