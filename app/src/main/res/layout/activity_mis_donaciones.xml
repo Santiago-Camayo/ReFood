@@ -57,8 +57,7 @@
                 android:layout_height="80dp"
                 android:src="@drawable/usuario1"
                 android:layout_gravity="center_horizontal"/>
-            <TextView
-                android:id="@+id/nombreusuario"
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Juan Perez"
@@ -161,6 +160,7 @@
 
 
     </LinearLayout>
+
 
 
 
