@@ -106,9 +106,8 @@ public class IniciarSesion extends AppCompatActivity {
                 });
     }
 
-    /**
-     * Gestiona los diferentes tipos de errores durante la recuperación de contraseña
-     */
+    //Gestiona los diferentes tipos de errores durante la recuperación de contraseña
+
     private void manejarErrorRecuperacion(Exception exception) {
         String mensajeError = "No se pudo enviar el correo de recuperación";
 
